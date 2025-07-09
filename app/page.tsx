@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col items-center">
+    <main className="min-h-screen flex flex-col">
       <div className="flex-1 w-full flex flex-col gap-20 items-center">
         <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
           <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
@@ -16,10 +16,10 @@ export default function Home() {
           </div>
         </nav>
         <Hero />
-        <footer className="w-full flex items-center justify-center border-t mx-auto border-t-foreground/ text-center text-xs gap-8 py-8">
-          <ThemeSwitcher />
-        </footer>
       </div>
+      <footer className="w-full h-16 flex items-center justify-center border-t border-t-foreground/10 text-center text-xs">
+        <ThemeSwitcher />
+      </footer>
     </main>
   );
 }
