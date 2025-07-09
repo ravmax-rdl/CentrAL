@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets\images\logowhite.png" alt="CentraAL" width="60%"/>
+  <img src="public\images\logowhite.png" alt="CentraAL" width="60%"/>
 </p>
 
 <p align="center">
