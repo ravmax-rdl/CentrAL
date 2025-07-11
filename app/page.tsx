@@ -16,6 +16,11 @@ export default function Home() {
           </div>
         </nav>
         <Hero />
+        {/* About */}
+        {/* Features */}
+        {/* Contributors */}
+        {/* List */}
+        {/* forum redirect or general cta */}
       </div>
       <footer className="w-full h-16 flex items-center justify-center border-t border-t-foreground/10 text-center text-xs">
         <ThemeSwitcher />
