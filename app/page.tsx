@@ -5,6 +5,7 @@ import FlipLink from '../components/ui/text-effect-flipper';
 import WrapButton from '@/components/ui/wrap-button';
 import { Globe } from 'lucide-react';
 import { NavBar } from '@/components/ui/tubelight-navbar';
+import { Rotate } from '@/components/ui/text-flip';
 
 export default function Home() {
   const navItems = [
@@ -33,7 +34,7 @@ export default function Home() {
 
         <FlipLink href="https://x.com/guri_who">Behance</FlipLink>
 
-        
+        <Rotate />
 
         {/* About */}
         {/* Features */}
