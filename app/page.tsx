@@ -5,6 +5,8 @@ import { ThemeSwitcher } from '@/components/ui/theme-switcher';
 import { hasEnvVars } from '@/lib/utils';
 import Link from 'next/link';
 import FlipLink from '../components/ui/text-effect-flipper';
+import  WrapButton  from '@/components/ui/wrap-button';
+import { Globe } from 'lucide-react';
 
 
 export default function Home() {
@@ -18,7 +20,14 @@ export default function Home() {
           </div>
         </nav>
         <Hero />
-        
+        <div className="w-full flex align-middle">
+          <div className="w-full flex justify-center items-center">
+            <WrapButton className="mt-10" href="/auth/login">
+              <Globe className="animate-spin" />
+              Get started
+            </WrapButton>
+          </div>
+        </div>
         <FlipLink href="https://x.com/guri_who">Behance</FlipLink>
         {/* About */}
         {/* Features */}
