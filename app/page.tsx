@@ -1,9 +1,11 @@
-import { EnvVarWarning } from '@/components/env-var-warning';
-import { AuthButton } from '@/components/auth-button';
-import { Hero } from '@/components/hero';
-import { ThemeSwitcher } from '@/components/theme-switcher';
+import { EnvVarWarning } from '@/components/ui/env-var-warning';
+import { AuthButton } from '@/components/ui/auth-button';
+import { Hero } from '@/components/ui/hero';
+import { ThemeSwitcher } from '@/components/ui/theme-switcher';
 import { hasEnvVars } from '@/lib/utils';
 import Link from 'next/link';
+import FlipLink from '../components/ui/text-effect-flipper';
+
 
 export default function Home() {
   return (
@@ -16,6 +18,8 @@ export default function Home() {
           </div>
         </nav>
         <Hero />
+        
+        <FlipLink href="https://x.com/guri_who">Behance</FlipLink>
         {/* About */}
         {/* Features */}
         {/* Contributors */}
