@@ -1,6 +1,6 @@
-import { EnvVarWarning } from '@/components/env-var-warning';
-import { AuthButton } from '@/components/auth-button';
-import { ThemeSwitcher } from '@/components/theme-switcher';
+import { EnvVarWarning } from '@/components/ui/env-var-warning';
+import { AuthButton } from '@/components/ui/auth-button';
+import { ThemeSwitcher } from '@/components/ui/theme-switcher';
 import { hasEnvVars } from '@/lib/utils';
 import Link from 'next/link';
 

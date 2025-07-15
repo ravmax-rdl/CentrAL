@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import SplitText from './ui/SplitText';
-import Magnet from './Animations/Magnet';
+import SplitText from './SplitText';
+import Magnet from '../Animations/Magnet';
 
 export function Hero() {
   return (
