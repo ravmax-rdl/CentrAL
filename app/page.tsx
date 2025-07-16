@@ -7,6 +7,8 @@ import { Globe } from 'lucide-react';
 import { NavBar } from '@/components/ui/tubelight-navbar';
 import { Rotate } from '@/components/ui/text-flip';
 import MagicBento from '@/components/ui/Bento';
+import { CardCarousel } from '@/components/ui/card-carousel';
+
 
 export default function Home() {
   const navItems = [
@@ -15,7 +17,11 @@ export default function Home() {
     { name: 'Projects', url: '#projects', icon: 'briefcase' },
     { name: 'Resume', url: '#resume', icon: 'fileText' },
   ];
-
+  const images = [
+    { src: '/images/logowhite.png', alt: 'Image 1' },
+    { src: '/images/logowhite.png', alt: 'Image 2' },
+    { src: '/images/logowhite.png', alt: 'Image 3' },
+  ];
   return (
     <main className="min-h-screen flex flex-col">
       <div className="flex-1 w-full flex flex-col gap-20 items-center mt-20">
@@ -31,7 +37,7 @@ export default function Home() {
           </div>
         </div>
         <FlipLink href="https://x.com/guri_who">Behance</FlipLink>
-        
+
         <MagicBento
           textAutoHide={true}
           enableStars={true}
@@ -44,7 +50,18 @@ export default function Home() {
           particleCount={0}
           glowColor="32, 200, 255"
         />
+
+        <div className="pt-40">
+          <CardCarousel
+            images={images}
+            autoplayDelay={2000}
+            showPagination={true}
+            showNavigation={true}
+          />
+        </div>
+
         <Rotate />
+
         {/* About */}
         {/* Features */}
         {/* Contributors */}

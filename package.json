@@ -30,6 +30,7 @@
     "react-hook-form": "^7.60.0",
     "sanity": "^3.99.0",
     "styled-components": "^6.1.19",
+    "swiper": "^11.2.10",
     "tailwind-merge": "^3.3.0",
     "zod": "^3.25.76"
   },
