@@ -1,17 +1,13 @@
 import { UserPanel } from '@/components/ui/user-panel';
-import { Hero } from '@/components/ui/hero';
 import { ThemeSwitcher } from '@/components/ui/theme-switcher';
 import FlipLink from '../components/ui/text-effect-flipper';
-import WrapButton from '@/components/ui/wrap-button';
-import { Globe } from 'lucide-react';
 import { NavBar } from '@/components/ui/tubelight-navbar';
 import { Rotate } from '@/components/ui/text-flip';
 import MagicBento from '@/components/ui/Bento';
 import { CardCarousel } from '@/components/ui/card-carousel';
 import MaskedDiv from '@/components/ui/masked-div';
 import Image from 'next/image';
-import { Component } from '@/components/ui/hero2';
-
+import { Hero } from '@/components/ui/hero';
 
 export default function Home() {
   const navItems = [
@@ -30,16 +26,8 @@ export default function Home() {
       <div className="flex-1 w-full flex flex-col gap-20 items-center mt-20">
         <UserPanel />
         <NavBar items={navItems} />
-        <Component />
         <Hero />
-        <div className="w-full flex align-middle">
-          <div className="w-full flex justify-center items-center">
-            <WrapButton className="mt-10" href="/auth/login">
-              <Globe className="animate-spin" />
-              Get started
-            </WrapButton>
-          </div>
-        </div>
+
         <FlipLink href="https://x.com/guri_who">Behance</FlipLink>
 
         <MagicBento
