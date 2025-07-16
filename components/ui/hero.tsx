@@ -164,7 +164,7 @@ const GradientBars: React.FC = () => {
   };
 
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden" ref={barsRef}>
+    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none" ref={barsRef}>
       <div
         className="flex h-full"
         style={{
@@ -208,7 +208,9 @@ export const Hero: React.FC = () => {
       <GradientBars />
       <div className="relative z-10 text-center w-full max-w-4xl mx-auto flex flex-col items-center justify-center min-h-screen py-8 sm:py-16">
         <div className="mb-6 sm:mb-8">
-          <TrustElements />
+          <Magnet padding={600} disabled={false} magnetStrength={40}>
+            <TrustElements />
+          </Magnet>
         </div>
         <h1 className="w-full text-white leading-tight tracking-tight mb-1 sm:mb-2 animate-fadeIn px-4">
           <span className="block font-inter font-medium text-[clamp(1.5rem,6vw,3.75rem)] whitespace-nowrap">
@@ -233,16 +235,12 @@ export const Hero: React.FC = () => {
             textAlign="center"
           />
         </div>
-        <Magnet padding={600} disabled={false} magnetStrength={20}>
-          <div className="w-full flex align-middle">
-            <div className="w-full flex justify-center items-center">
-              <WrapButton className="mt-10" href="/auth/login">
-                <Globe className="animate-spin" />
-                Get started
-              </WrapButton>
-            </div>
-          </div>
-        </Magnet>
+        <div className="w-full flex justify-center relative z-20">
+          <WrapButton className="mt-10" href="/auth/sign-up">
+            <Globe className="animate-spin " />
+            Get started
+          </WrapButton>
+        </div>
       </div>
     </section>
   );
