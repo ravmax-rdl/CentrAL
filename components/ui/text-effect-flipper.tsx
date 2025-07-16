@@ -18,12 +18,12 @@ const FlipLink: React.FC<FlipLinkProps> = ({ children, href }) => {
       whileHover="hovered"
       target="_blank"
       href={href}
-      className="relative block overflow-hidden whitespace-nowrap text-4xl font-semibold uppercase dark:text-white/90 sm:text-7xl md:text-8xl "
+      className="relative block whitespace-nowrap text-4xl font-semibold uppercase dark:text-white/90 sm:text-7xl md:text-8xl "
       style={{
         lineHeight: 0.75,
       }}
     >
-      <div>
+      <div className="relative overflow-hidden">
         {children.split('').map((l, i) => (
           <motion.span
             variants={{
@@ -46,7 +46,7 @@ const FlipLink: React.FC<FlipLinkProps> = ({ children, href }) => {
           </motion.span>
         ))}
       </div>
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 overflow-hidden">
         {children.split('').map((l, i) => (
           <motion.span
             variants={{
