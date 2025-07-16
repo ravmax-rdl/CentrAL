@@ -8,6 +8,8 @@ import { NavBar } from '@/components/ui/tubelight-navbar';
 import { Rotate } from '@/components/ui/text-flip';
 import MagicBento from '@/components/ui/Bento';
 import { CardCarousel } from '@/components/ui/card-carousel';
+import MaskedDiv from '@/components/ui/masked-div';
+import Image from 'next/image';
 
 
 export default function Home() {
@@ -62,6 +64,18 @@ export default function Home() {
 
         <Rotate />
 
+        <MaskedDiv maskType="type-1" size={0.45} className="my-4">
+          <video autoPlay loop muted>
+            <source
+              src="https://videos.pexels.com/video-files/7710243/7710243-uhd_2560_1440_30fps.mp4"
+              type="video/mp4"
+            />
+          </video>
+        </MaskedDiv>
+
+        <MaskedDiv maskType="type-4" size={0.45} className="my-4">
+          <Image width={1920} height={1080} src="/images/logowhite.png" alt="" />
+        </MaskedDiv>
         {/* About */}
         {/* Features */}
         {/* Contributors */}
