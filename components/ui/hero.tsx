@@ -1,11 +1,11 @@
 'use client';
-import React, { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import SplitText from './SplitText';
-import Magnet from '../Animations/Magnet';
-import WrapButton from './wrap-button';
 import { Globe } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import Magnet from '../Animations/Magnet';
+import SplitText from './SplitText';
+import WrapButton from './wrap-button';
 
 type AvatarProps = {
   imageSrc: string;
@@ -54,6 +54,8 @@ const GradientBars: React.FC = () => {
   const barsRef = useRef<HTMLDivElement>(null);
   const barRefs = useRef<(HTMLDivElement | null)[]>([]);
   const mouseRef = useRef({ x: 0, y: 0 });
+  const revertTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const originalHeightsRef = useRef<number[]>([]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -62,17 +64,36 @@ const GradientBars: React.FC = () => {
       // Initialize bars with random heights
       const bars = barRefs.current;
       if (bars.length > 0) {
-        // Set initial random heights
-        bars.forEach((bar) => {
+        // Set initial random heights and store them
+        bars.forEach((bar, index) => {
           if (bar) {
             const randomHeight = Math.random() * 60 + 20; // Random height between 20-80%
+            originalHeightsRef.current[index] = randomHeight / 100;
             gsap.set(bar, { scaleY: randomHeight / 100 });
           }
         });
 
+        // Function to revert bars to original heights
+        const revertBars = () => {
+          bars.forEach((bar, index) => {
+            if (bar) {
+              gsap.to(bar, {
+                scaleY: originalHeightsRef.current[index],
+                duration: 0.3,
+                ease: 'power2.out',
+              });
+            }
+          });
+        };
+
         // Mouse move interaction
         const handleMouseMove = (e: MouseEvent) => {
           mouseRef.current = { x: e.clientX, y: e.clientY };
+
+          // Clear existing timeout
+          if (revertTimeoutRef.current) {
+            clearTimeout(revertTimeoutRef.current);
+          }
 
           bars.forEach((bar) => {
             if (bar) {
@@ -98,6 +119,9 @@ const GradientBars: React.FC = () => {
               });
             }
           });
+
+          // Set timeout to revert after 5 seconds
+          revertTimeoutRef.current = setTimeout(revertBars, 5000);
         };
 
         window.addEventListener('mousemove', handleMouseMove);
@@ -145,6 +169,9 @@ const GradientBars: React.FC = () => {
 
         return () => {
           window.removeEventListener('mousemove', handleMouseMove);
+          if (revertTimeoutRef.current) {
+            clearTimeout(revertTimeoutRef.current);
+          }
           scrollTrigger.kill();
         };
       }
@@ -204,7 +231,7 @@ const GradientBars: React.FC = () => {
 export const Hero: React.FC = () => {
   return (
     <section className="w-full relative min-h-screen flex flex-col items-center px-6 sm:px-8 md:px-12 overflow-hidden">
-      <div className="absolute inset-0 bg-gray-950"></div>
+  
       <GradientBars />
       <div className="relative z-10 text-center w-full max-w-4xl mx-auto flex flex-col items-center justify-center min-h-screen py-8 sm:py-16">
         <div className="mb-6 sm:mb-8">
@@ -217,7 +244,7 @@ export const Hero: React.FC = () => {
             Redefining Whats Possible,
           </span>
           <span className="block font-instrument italic text-[clamp(1.5rem,6vw,3.75rem)] whitespace-nowrap">
-            One Experience at a Time.
+            One lesson at a time.
           </span>
           <div className="w-full p-[1px] bg-gradient-to-r from-transparent via-foreground/10 to-transparent my-8" />
         </h1>
