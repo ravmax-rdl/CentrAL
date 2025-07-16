@@ -6,6 +6,7 @@ import WrapButton from '@/components/ui/wrap-button';
 import { Globe } from 'lucide-react';
 import { NavBar } from '@/components/ui/tubelight-navbar';
 import { Rotate } from '@/components/ui/text-flip';
+import MagicBento from '@/components/ui/Bento';
 
 export default function Home() {
   const navItems = [
@@ -17,12 +18,10 @@ export default function Home() {
 
   return (
     <main className="min-h-screen flex flex-col">
-      <div className="flex-1 w-full flex flex-col gap-20 items-center">
+      <div className="flex-1 w-full flex flex-col gap-20 items-center mt-20">
         <UserPanel />
         <NavBar items={navItems} />
-
         <Hero />
-
         <div className="w-full flex align-middle">
           <div className="w-full flex justify-center items-center">
             <WrapButton className="mt-10" href="/auth/login">
@@ -31,11 +30,21 @@ export default function Home() {
             </WrapButton>
           </div>
         </div>
-
         <FlipLink href="https://x.com/guri_who">Behance</FlipLink>
-
+        
+        <MagicBento
+          textAutoHide={true}
+          enableStars={true}
+          enableSpotlight={true}
+          enableBorderGlow={true}
+          enableTilt={true}
+          enableMagnetism={true}
+          clickEffect={true}
+          spotlightRadius={300}
+          particleCount={0}
+          glowColor="32, 200, 255"
+        />
         <Rotate />
-
         {/* About */}
         {/* Features */}
         {/* Contributors */}
