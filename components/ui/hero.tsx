@@ -230,8 +230,10 @@ const GradientBars: React.FC = () => {
 
 export const Hero: React.FC = () => {
   return (
-    <section className="w-full relative min-h-screen flex flex-col items-center px-6 sm:px-8 md:px-12 overflow-hidden">
-  
+    <section
+      id="home"
+      className="w-full relative min-h-screen flex flex-col items-center px-6 sm:px-8 md:px-12 overflow-hidden"
+    >
       <GradientBars />
       <div className="relative z-10 text-center w-full max-w-4xl mx-auto flex flex-col items-center justify-center min-h-screen py-8 sm:py-16">
         <div className="mb-6 sm:mb-8">

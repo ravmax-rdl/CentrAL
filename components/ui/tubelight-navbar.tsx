@@ -1,9 +1,19 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Home, User, Briefcase, FileText, LucideIcon } from 'lucide-react';
+import {
+  Home,
+  User,
+  Briefcase,
+  FileText,
+  Star,
+  Users,
+  BookOpen,
+  Github,
+  LucideIcon,
+} from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface NavItem {
@@ -22,10 +32,53 @@ const iconMap: Record<string, LucideIcon> = {
   user: User,
   briefcase: Briefcase,
   fileText: FileText,
+  star: Star,
+  users: Users,
+  bookOpen: BookOpen,
+  github: Github,
 };
 
 export function NavBar({ items, className }: NavBarProps) {
   const [activeTab, setActiveTab] = useState(items[0].name);
+
+  // Add scroll listener to update active tab based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 100; // Add offset for navbar height
+
+      for (let i = items.length - 1; i >= 0; i--) {
+        const item = items[i];
+        if (item.url.startsWith('#')) {
+          const element = document.querySelector(item.url) as HTMLElement;
+          if (element) {
+            const elementTop = element.offsetTop;
+            if (scrollPosition >= elementTop) {
+              setActiveTab(item.name);
+              break;
+            }
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [items]);
+
+  const handleClick = (item: NavItem) => {
+    setActiveTab(item.name);
+
+    // Handle smooth scrolling for hash links
+    if (item.url.startsWith('#')) {
+      const element = document.querySelector(item.url) as HTMLElement;
+      if (element) {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
+    }
+  };
 
   return (
     <div
@@ -44,11 +97,11 @@ export function NavBar({ items, className }: NavBarProps) {
             <Link
               key={item.name}
               href={item.url}
-              onClick={() => setActiveTab(item.name)}
+              onClick={() => handleClick(item)}
               className={cn(
                 'relative cursor-pointer text-sm font-semibold px-3 sm:px-6 py-2 rounded-full transition-colors',
                 'text-foreground/80 hover:text-primary',
-                isActive && 'bg-muted text-primary'
+                isActive && 'bg-[#40404080] text-primary'
               )}
             >
               <span className="hidden sm:inline">{item.name}</span>

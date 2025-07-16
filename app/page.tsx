@@ -10,10 +10,12 @@ import SubjectList from '@/components/ui/subject-list';
 
 export default function Home() {
   const navItems = [
-    { name: 'Home', url: '/', icon: 'home' },
+    { name: 'Home', url: '#home', icon: 'home' },
     { name: 'About', url: '#about', icon: 'user' },
-    { name: 'Projects', url: '#projects', icon: 'briefcase' },
-    { name: 'Resume', url: '#resume', icon: 'fileText' },
+    { name: 'Features', url: '#features', icon: 'star' },
+    { name: 'Team', url: '#contributors', icon: 'users' },
+    { name: 'Projects', url: '#projects', icon: 'bookOpen' },
+    { name: 'Contact', url: '#cta', icon: 'briefcase' },
   ];
   return (
     <main className="min-h-screen flex flex-col">
