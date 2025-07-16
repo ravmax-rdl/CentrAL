@@ -10,6 +10,7 @@ import MagicBento from '@/components/ui/Bento';
 import { CardCarousel } from '@/components/ui/card-carousel';
 import MaskedDiv from '@/components/ui/masked-div';
 import Image from 'next/image';
+import { Component } from '@/components/ui/hero2';
 
 
 export default function Home() {
@@ -29,6 +30,7 @@ export default function Home() {
       <div className="flex-1 w-full flex flex-col gap-20 items-center mt-20">
         <UserPanel />
         <NavBar items={navItems} />
+        <Component />
         <Hero />
         <div className="w-full flex align-middle">
           <div className="w-full flex justify-center items-center">
