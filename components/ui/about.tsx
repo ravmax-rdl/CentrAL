@@ -82,10 +82,10 @@ const About: React.FC = () => {
     <section id="about" ref={aboutRef} className="w-full max-w-6xl mx-auto px-4 py-20">
       <div className="text-center mb-16">
         <h2 className="about-text text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
-          About CentrAL
+          About centrAL
         </h2>
         <p className="about-text text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-          CentrAL is a modern platform designed to bring developers together, fostering
+          centrAL is a modern platform designed to bring developers together, fostering
           collaboration and innovation in the tech community. We&apos;re building the future of
           developer networking.
         </p>

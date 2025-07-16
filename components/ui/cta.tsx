@@ -111,10 +111,10 @@ const CTA: React.FC = () => {
       <div className="text-center mb-20">
         <div className="cta-content">
           <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent">
-            Ready to Join CentrAL?
+            Ready to Join centrAL?
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8">
-            Join thousands of developers already using CentrAL to build, collaborate, and grow their
+            Join thousands of developers already using centrAL to build, collaborate, and grow their
             careers.
           </p>
 

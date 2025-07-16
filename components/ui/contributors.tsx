@@ -125,7 +125,7 @@ const Contributors: React.FC = () => {
             Meet the Team
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            The passionate individuals behind CentrAL, working to create the best developer
+            The passionate individuals behind centrAL, working to create the best developer
             experience
           </p>
         </div>

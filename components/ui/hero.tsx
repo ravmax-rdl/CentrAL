@@ -250,7 +250,7 @@ export const Hero: React.FC = () => {
         </h1>
         <div className="text-2xl lg:text-3xl mx-auto max-w-2xl text-center">
           <SplitText
-            text="CentrAL aims to be an educational resource sharing hub."
+            text="centrAL aims to be an educational resource sharing hub."
             delay={10}
             duration={2}
             ease="elastic.out(1, 0.3)"
