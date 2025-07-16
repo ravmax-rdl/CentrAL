@@ -229,13 +229,48 @@ const GradientBars: React.FC = () => {
 };
 
 export const Hero: React.FC = () => {
+  const heroRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && heroRef.current) {
+      const ctx = gsap.context(() => {
+        // Parallax effect for the hero content
+        gsap.to('.hero-content', {
+          y: -100,
+          opacity: 0.3,
+          scale: 0.95,
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1.5,
+          },
+        });
+
+        // Fade out the hero as content approaches
+        gsap.to(heroRef.current, {
+          opacity: 0.2,
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top top',
+            end: '100vh top',
+            scrub: 2,
+          },
+        });
+      }, heroRef);
+
+      return () => ctx.revert();
+    }
+  }, []);
+
   return (
     <section
+      ref={heroRef}
       id="home"
-      className="w-full relative min-h-screen flex flex-col items-center px-6 sm:px-8 md:px-12 overflow-hidden"
+      className="w-full h-screen flex flex-col items-center justify-center px-6 sm:px-8 md:px-12 overflow-hidden"
     >
       <GradientBars />
-      <div className="relative z-10 text-center w-full max-w-4xl mx-auto flex flex-col items-center justify-center min-h-screen py-8 sm:py-16">
+      <div className="hero-content relative z-10 text-center w-full max-w-4xl mx-auto flex flex-col items-center justify-center">
         <div className="mb-6 sm:mb-8">
           <Magnet padding={600} disabled={false} magnetStrength={40}>
             <TrustElements />

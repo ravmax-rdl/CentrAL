@@ -211,3 +211,85 @@ img {
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--muted-foreground));
 }
+
+/* Layered scroll styles */
+.layered-scroll-container {
+  scroll-behavior: smooth;
+  /* Improve scroll performance on mobile */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.layered-content {
+  position: relative;
+  z-index: 20;
+  background: linear-gradient(
+    to bottom,
+    hsl(var(--background)) 0%,
+    hsl(var(--background) / 0.98) 10%,
+    hsl(var(--background) / 0.95) 100%
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid hsl(var(--border) / 0.3);
+  box-shadow:
+    0 -20px 40px hsl(var(--background) / 0.1),
+    0 -10px 20px hsl(var(--background) / 0.05);
+  /* Ensure proper stacking and performance */
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.layered-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.5), transparent);
+}
+
+/* Enhanced card hover effects */
+.about-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+    0 20px 40px hsl(var(--primary) / 0.1),
+    0 10px 20px hsl(var(--primary) / 0.05);
+}
+
+/* Smooth animations with GPU acceleration */
+.about-card {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.about-text {
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.hero-content {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Improved focus states */
+.about-card:focus-within {
+  outline: 2px solid hsl(var(--primary) / 0.5);
+  outline-offset: 2px;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .layered-content {
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
+
+  .about-card:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+}
