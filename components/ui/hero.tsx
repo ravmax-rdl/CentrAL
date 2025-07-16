@@ -1,5 +1,7 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SplitText from './SplitText';
 import Magnet from '../Animations/Magnet';
 import WrapButton from './wrap-button';
@@ -49,6 +51,105 @@ const TrustElements: React.FC = () => {
 
 const GradientBars: React.FC = () => {
   const [numBars] = useState(15);
+  const barsRef = useRef<HTMLDivElement>(null);
+  const barRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const mouseRef = useRef({ x: 0, y: 0 });
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Initialize bars with random heights
+      const bars = barRefs.current;
+      if (bars.length > 0) {
+        // Set initial random heights
+        bars.forEach((bar) => {
+          if (bar) {
+            const randomHeight = Math.random() * 60 + 20; // Random height between 20-80%
+            gsap.set(bar, { scaleY: randomHeight / 100 });
+          }
+        });
+
+        // Mouse move interaction
+        const handleMouseMove = (e: MouseEvent) => {
+          mouseRef.current = { x: e.clientX, y: e.clientY };
+
+          bars.forEach((bar) => {
+            if (bar) {
+              const rect = bar.getBoundingClientRect();
+              const centerX = rect.left + rect.width / 2;
+              const centerY = rect.top + rect.height / 2;
+
+              const distanceX = Math.abs(e.clientX - centerX);
+              const distanceY = Math.abs(e.clientY - centerY);
+              const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+
+              const maxDistance = 300;
+              const influence = Math.max(0, 1 - distance / maxDistance);
+              const heightBoost = influence * 0.3;
+
+              const currentScale = gsap.getProperty(bar, 'scaleY') as number;
+              const newScale = Math.min(1, currentScale + heightBoost);
+
+              gsap.to(bar, {
+                scaleY: newScale,
+                duration: 0.3,
+                ease: 'power2.out',
+              });
+            }
+          });
+        };
+
+        window.addEventListener('mousemove', handleMouseMove);
+
+        // Create scroll-triggered animation
+        const scrollTrigger = ScrollTrigger.create({
+          trigger: barsRef.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1,
+          onUpdate: (self) => {
+            const progress = self.progress;
+
+            bars.forEach((bar, index) => {
+              if (bar) {
+                // Create wave effect based on scroll progress
+                const wave = Math.sin(progress * Math.PI * 4 + index * 0.5) * 0.3;
+                const baseHeight = calculateHeight(index, numBars);
+                const scrollInfluence = Math.sin(progress * Math.PI * 2) * 20;
+                const finalHeight = baseHeight + wave * 30 + scrollInfluence;
+
+                gsap.to(bar, {
+                  scaleY: Math.max(0.2, Math.min(1, finalHeight / 100)),
+                  duration: 0.3,
+                  ease: 'power2.out',
+                });
+              }
+            });
+          },
+        });
+
+        // Continuous floating animation
+        bars.forEach((bar, index) => {
+          if (bar) {
+            gsap.to(bar, {
+              scaleY: `+=${Math.random() * 0.2 - 0.1}`,
+              duration: 2 + Math.random() * 2,
+              repeat: -1,
+              yoyo: true,
+              ease: 'sine.inOut',
+              delay: index * 0.1,
+            });
+          }
+        });
+
+        return () => {
+          window.removeEventListener('mousemove', handleMouseMove);
+          scrollTrigger.kill();
+        };
+      }
+    }
+  }, [numBars]);
 
   const calculateHeight = (index: number, total: number) => {
     const position = index / (total - 1);
@@ -63,7 +164,7 @@ const GradientBars: React.FC = () => {
   };
 
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden">
+    <div className="absolute inset-0 z-0 overflow-hidden" ref={barsRef}>
       <div
         className="flex h-full"
         style={{
@@ -78,6 +179,10 @@ const GradientBars: React.FC = () => {
           return (
             <div
               key={index}
+              ref={(el) => {
+                barRefs.current[index] = el;
+              }}
+              className="gradient-bar"
               style={{
                 flex: '1 0 calc(100% / 15)',
                 maxWidth: 'calc(100% / 15)',
@@ -85,9 +190,6 @@ const GradientBars: React.FC = () => {
                 background: 'linear-gradient(to top, rgb(0, 200, 250), transparent)',
                 transform: `scaleY(${height / 100})`,
                 transformOrigin: 'bottom',
-                transition: 'transform 0.5s ease-in-out',
-                animation: 'pulseBar 2s ease-in-out infinite alternate',
-                animationDelay: `${index * 0.1}s`,
                 outline: '1px solid rgba(0, 0, 0, 0)',
                 boxSizing: 'border-box',
               }}
@@ -108,16 +210,16 @@ export const Hero: React.FC = () => {
         <div className="mb-6 sm:mb-8">
           <TrustElements />
         </div>
-          <h1 className="w-full text-white leading-tight tracking-tight mb-6 sm:mb-8 animate-fadeIn px-4">
-            <span className="block font-inter font-medium text-[clamp(1.5rem,6vw,3.75rem)] whitespace-nowrap">
-              Redefining Whats Possible,
-            </span>
-            <span className="block font-instrument italic text-[clamp(1.5rem,6vw,3.75rem)] whitespace-nowrap">
-              One Experience at a Time.
-            </span>
-            <div className="w-full p-[1px] bg-gradient-to-r from-transparent via-foreground/10 to-transparent my-8" />
-          </h1>
-        <div className="text-2xl lg:text-3xl !leading-tight mx-auto max-w-2xl text-center">
+        <h1 className="w-full text-white leading-tight tracking-tight mb-1 sm:mb-2 animate-fadeIn px-4">
+          <span className="block font-inter font-medium text-[clamp(1.5rem,6vw,3.75rem)] whitespace-nowrap">
+            Redefining Whats Possible,
+          </span>
+          <span className="block font-instrument italic text-[clamp(1.5rem,6vw,3.75rem)] whitespace-nowrap">
+            One Experience at a Time.
+          </span>
+          <div className="w-full p-[1px] bg-gradient-to-r from-transparent via-foreground/10 to-transparent my-8" />
+        </h1>
+        <div className="text-2xl lg:text-3xl mx-auto max-w-2xl text-center">
           <SplitText
             text="CentrAL aims to be an educational resource sharing hub."
             delay={10}
@@ -132,14 +234,14 @@ export const Hero: React.FC = () => {
           />
         </div>
         <Magnet padding={600} disabled={false} magnetStrength={20}>
-        <div className="w-full flex align-middle">
-          <div className="w-full flex justify-center items-center">
-            <WrapButton className="mt-10" href="/auth/login">
-              <Globe className="animate-spin" />
-              Get started
-            </WrapButton>
+          <div className="w-full flex align-middle">
+            <div className="w-full flex justify-center items-center">
+              <WrapButton className="mt-10" href="/auth/login">
+                <Globe className="animate-spin" />
+                Get started
+              </WrapButton>
+            </div>
           </div>
-        </div>
         </Magnet>
       </div>
     </section>
