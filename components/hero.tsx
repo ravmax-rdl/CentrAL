@@ -3,9 +3,9 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Globe } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
-import Magnet from '../Animations/Magnet';
-import SplitText from './SplitText';
-import WrapButton from './wrap-button';
+import Magnet from './Animations/Magnet';
+import SplitText from './ui/SplitText';
+import WrapButton from './ui/wrap-button';
 
 type AvatarProps = {
   imageSrc: string;

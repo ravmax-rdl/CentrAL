@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Code, Users, Zap, Target } from 'lucide-react';
-import { Rotate } from './text-flip';
+import { Rotate } from './ui/text-flip';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);

@@ -1,12 +1,12 @@
 import { UserPanel } from '@/components/ui/user-panel';
 import { ThemeSwitcher } from '@/components/ui/theme-switcher';
-import { NavBar } from '@/components/ui/tubelight-navbar';
-import { Hero } from '@/components/ui/hero';
-import About from '@/components/ui/about';
-import Features from '@/components/ui/features';
-import Contributors from '@/components/ui/contributors';
-import CTA from '@/components/ui/cta';
-import SubjectList from '@/components/ui/subject-list';
+import { NavBar } from '@/components/tubelight-navbar';
+import { Hero } from '@/components/hero';
+import About from '@/components/about';
+import Features from '@/components/features';
+import Contributors from '@/components/contributors';
+import CTA from '@/components/cta';
+import SubjectList from '@/components/subject-list';
 import { LayeredScrollContent } from '@/components/ui/layered-scroll';
 import ScrollIndicator from '@/components/ui/scroll-indicator';
 
@@ -19,7 +19,6 @@ export default function Home() {
     { name: 'Projects', url: '#projects', icon: 'bookOpen' },
     { name: 'Contact', url: '#cta', icon: 'briefcase' },
   ];
-
 
   return (
     <main className="min-h-screen relative layered-scroll-container">

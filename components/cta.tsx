@@ -11,7 +11,7 @@ import {
   MessageCircle,
   Twitter,
 } from 'lucide-react';
-import FlipLink from './text-effect-flipper';
+import FlipLink from './ui/text-effect-flipper';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
