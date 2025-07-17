@@ -121,46 +121,7 @@ const About: React.FC = () => {
   }, []);
 
   return (
-    <section
-      id="about"
-      ref={aboutRef}
-      className="relative w-full mx-auto px-4 min-h-screen"
-    >
-      <div className="w-full h-full text-4xl sm:text-5xl md:text-7xl flex flex-row items-center justify-center text-foreground font-light overflow-hidden p-16 sm:p-20 md:p-40">
-        <LayoutGroup>
-          <motion.p className="flex whitespace-pre" layout>
-            <motion.span
-              className="pt-0.5 sm:pt-1 md:pt-2"
-              layout
-              transition={{ type: 'spring', damping: 30, stiffness: 400 }}
-            >
-              Make it{' '}
-            </motion.span>
-            <TextRotate
-              texts={[
-                'easy!',
-                'interactive',
-                'exam-ready',
-                'A/L focused',
-                'accessible',
-                'personalized',
-                'Sri Lankan',
-                'bilingual',
-              ]}
-              mainClassName="text-white px-2 sm:px-2 md:px-3 bg-[#43afbe] overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
-              staggerFrom={'last'}
-              initial={{ y: '100%' }}
-              animate={{ y: 0 }}
-              exit={{ y: '-120%' }}
-              staggerDuration={0.025}
-              splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
-              transition={{ type: 'spring', damping: 30, stiffness: 400 }}
-              rotationInterval={2000}
-            />
-          </motion.p>
-        </LayoutGroup>
-      </div>
-
+    <section id="about" ref={aboutRef} className="relative w-full mx-auto py-20 px-4 ">
       {/* Large Animated Text Paragraph */}
       <div className="about-text pt-10">
         <motion.div
@@ -178,27 +139,44 @@ const About: React.FC = () => {
             viewport={{ once: true }}
           >
             Welcome to <span className="text-primary font-semibold">CentrAL</span>, Sri Lanka&apos;s
-            premier digital learning platform designed specifically for Advanced Level students. We
-            understand the unique challenges of the Sri Lankan education system and have crafted an
-            experience that combines
+            premier digital learning platform
+            <LayoutGroup>
+              <motion.p className="flex whitespace-pre" layout>
+                <motion.span
+                  className="pt-0.5 sm:pt-1 md:pt-2 flex justify-center"
+                  layout
+                  transition={{ type: 'spring', damping: 30, stiffness: 400 }}
+                >
+                  Make it{' '}
+                </motion.span>
+                <TextRotate
+                  texts={[
+                    'easy!',
+                    'interactive',
+                    'exam-ready',
+                    'A/L focused',
+                    'accessible',
+                    'personalized',
+                    'Sri Lankan',
+                    'bilingual',
+                  ]}
+                  mainClassName="text-white px-2 sm:px-2 md:px-3 bg-[#43afbe] overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
+                  staggerFrom={'last'}
+                  initial={{ y: '100%' }}
+                  animate={{ y: 0 }}
+                  exit={{ y: '-120%' }}
+                  staggerDuration={0.025}
+                  splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+                  transition={{ type: 'spring', damping: 30, stiffness: 400 }}
+                  rotationInterval={2000}
+                />
+              </motion.p>
+            </LayoutGroup>
+            designed specifically for Advanced Level students. We understand the unique challenges
+            of the Sri Lankan education system and have crafted an experience that combines
             <span className="text-primary font-medium"> cutting-edge technology</span> with
             <span className="text-primary font-medium"> deep curriculum knowledge</span> to help you
             excel.
-          </motion.p>
-
-          <motion.p
-            className="text-base  leading-relaxed text-muted-foreground"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.6 }}
-            viewport={{ once: true }}
-          >
-            Our platform bridges the gap between traditional learning and modern educational needs,
-            offering <span className="text-primary font-medium">personalized study paths</span>,
-            <span className="text-primary font-medium"> interactive content</span>, and
-            <span className="text-primary font-medium"> comprehensive exam preparation</span> tools.
-            Join thousands of students who have already transformed their learning journey with
-            CentrAL.
           </motion.p>
         </motion.div>
       </div>
