@@ -44,25 +44,67 @@ export function NavBar({ items, className }: NavBarProps) {
   // Add scroll listener to update active tab based on scroll position
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100; // Add offset for navbar height
+      const scrollPosition = window.scrollY;
+      const viewportHeight = window.innerHeight;
 
-      for (let i = items.length - 1; i >= 0; i--) {
-        const item = items[i];
-        if (item.url.startsWith('#')) {
+      // Special handling for Home section - active when scroll is less than 50% of viewport height
+      if (scrollPosition < viewportHeight * 0.5) {
+        setActiveTab('Home');
+        return;
+      }
+
+      // For other sections, find which section's top is closest to the current scroll position
+      let currentSection = 'Home';
+      let closestDistance = Infinity;
+
+      for (const item of items) {
+        if (item.url.startsWith('#') && item.name !== 'Home') {
           const element = document.querySelector(item.url) as HTMLElement;
           if (element) {
-            const elementTop = element.offsetTop;
-            if (scrollPosition >= elementTop) {
-              setActiveTab(item.name);
+            // Get the actual position of the element
+            const elementRect = element.getBoundingClientRect();
+            const elementTop = elementRect.top + scrollPosition;
+
+            // Check if this section is currently in view or has been passed
+            const sectionStart = elementTop - 200; // Start considering section 200px before it appears
+            const sectionEnd = elementTop + element.offsetHeight;
+
+            // If we're within or past this section's range
+            if (scrollPosition >= sectionStart && scrollPosition < sectionEnd) {
+              currentSection = item.name;
               break;
+            }
+
+            // Fallback: find section closest to current scroll position
+            if (scrollPosition >= sectionStart) {
+              const distance = Math.abs(scrollPosition - elementTop);
+              if (distance < closestDistance) {
+                closestDistance = distance;
+                currentSection = item.name;
+              }
             }
           }
         }
       }
+
+      setActiveTab(currentSection);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Initial check
+    handleScroll();
+
+    // Debounced scroll handler for better performance
+    let timeoutId: NodeJS.Timeout;
+    const debouncedHandleScroll = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(handleScroll, 10);
+    };
+
+    window.addEventListener('scroll', debouncedHandleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', debouncedHandleScroll);
+      clearTimeout(timeoutId);
+    };
   }, [items]);
 
   const handleClick = (item: NavItem) => {
@@ -70,11 +112,30 @@ export function NavBar({ items, className }: NavBarProps) {
 
     // Handle smooth scrolling for hash links
     if (item.url.startsWith('#')) {
+      // Special handling for Home section
+      if (item.name === 'Home') {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
+        return;
+      }
+
       const element = document.querySelector(item.url) as HTMLElement;
       if (element) {
-        element.scrollIntoView({
+        // Get the actual position of the element relative to the document
+        const elementRect = element.getBoundingClientRect();
+        const currentScrollTop = window.scrollY;
+        const elementTop = elementRect.top + currentScrollTop;
+
+        // Calculate target position with a reasonable offset for better visibility
+        // Scroll to show the section nicely in the viewport, not right at the top
+        const offset = 150; // Adjusted offset for better section visibility
+        const targetPosition = elementTop - offset;
+
+        window.scrollTo({
+          top: Math.max(0, targetPosition),
           behavior: 'smooth',
-          block: 'start',
         });
       }
     }
@@ -97,7 +158,10 @@ export function NavBar({ items, className }: NavBarProps) {
             <Link
               key={item.name}
               href={item.url}
-              onClick={() => handleClick(item)}
+              onClick={(e) => {
+                e.preventDefault(); // Prevent default link behavior
+                handleClick(item);
+              }}
               className={cn(
                 'relative cursor-pointer text-sm font-semibold px-3 sm:px-6 py-2 rounded-full transition-colors',
                 'text-foreground/80 hover:text-primary',
