@@ -2,9 +2,8 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Code, Users, Zap, Target } from 'lucide-react';
-import { LayoutGroup, motion } from "motion/react"
-import { TextRotate } from "@/components/ui/text-rotate"
+import { LayoutGroup, motion } from 'motion/react';
+import { TextRotate } from '@/components/ui/text-rotate';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -13,10 +12,29 @@ if (typeof window !== 'undefined') {
 const About: React.FC = () => {
   const aboutRef = useRef<HTMLElement>(null);
 
+  const features = [
+    {
+      word: 'Learn',
+      color: 'from-blue-500/10 to-blue-600/5',
+    },
+    {
+      word: 'Connect',
+      color: 'from-green-500/10 to-green-600/5',
+    },
+    {
+      word: 'Practice',
+      color: 'from-purple-500/10 to-purple-600/5',
+    },
+    {
+      word: 'Excel',
+      color: 'from-orange-500/10 to-orange-600/5',
+    },
+  ];
+
   useEffect(() => {
     if (typeof window !== 'undefined' && aboutRef.current) {
       const ctx = gsap.context(() => {
-        // Create scroll animations - enhanced for layered scroll
+        // Animate the text elements
         gsap.fromTo(
           '.about-text',
           { y: 80, opacity: 0, scale: 0.95 },
@@ -37,108 +55,168 @@ const About: React.FC = () => {
           }
         );
 
-        gsap.fromTo(
-          '.about-card',
-          { scale: 0.8, opacity: 0, y: 60 },
-          {
-            scale: 1,
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            stagger: 0.2,
-            ease: 'back.out(1.7)',
-            scrollTrigger: {
-              trigger: '.about-cards',
-              start: 'top 85%',
-              end: 'top 50%',
-              scrub: 1,
-              toggleActions: 'play none none reverse',
-            },
-          }
-        );
+        // Floating tiles animation
+        const tiles = gsap.utils.toArray('.floating-tile') as HTMLElement[];
 
-        // Add floating animation to cards
-        gsap.to('.about-card', {
-          y: -10,
-          duration: 2,
-          repeat: -1,
-          yoyo: true,
-          ease: 'sine.inOut',
-          stagger: 0.5,
+        // Initial floating animation - reduced movement for less obstrusiveness
+        tiles.forEach((tile: HTMLElement, index) => {
+          gsap.set(tile, {
+            x: gsap.utils.random(-100, 100),
+            y: gsap.utils.random(-50, 50),
+            rotation: gsap.utils.random(-5, 5),
+          });
+
+          gsap.to(tile, {
+            y: `+=${gsap.utils.random(-15, 15)}`,
+            x: `+=${gsap.utils.random(-10, 10)}`,
+            rotation: `+=${gsap.utils.random(-5, 5)}`,
+            duration: gsap.utils.random(4, 8),
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut',
+            delay: index * 0.8,
+          });
         });
+
+        // Cursor avoidance animation - reduced sensitivity
+        const handleMouseMove = (e: MouseEvent) => {
+          const { clientX, clientY } = e;
+
+          tiles.forEach((tile: HTMLElement) => {
+            const rect = tile.getBoundingClientRect();
+            const tileCenterX = rect.left + rect.width / 2;
+            const tileCenterY = rect.top + rect.height / 2;
+
+            const distance = Math.sqrt(
+              Math.pow(clientX - tileCenterX, 2) + Math.pow(clientY - tileCenterY, 2)
+            );
+
+            const maxDistance = 120;
+
+            if (distance < maxDistance) {
+              const angle = Math.atan2(tileCenterY - clientY, tileCenterX - clientX);
+              const force = (maxDistance - distance) / maxDistance;
+              const moveX = Math.cos(angle) * force * 30;
+              const moveY = Math.sin(angle) * force * 30;
+
+              gsap.to(tile, {
+                x: `+=${moveX}`,
+                y: `+=${moveY}`,
+                duration: 0.5,
+                ease: 'power2.out',
+              });
+            }
+          });
+        };
+
+        document.addEventListener('mousemove', handleMouseMove);
+
+        return () => {
+          document.removeEventListener('mousemove', handleMouseMove);
+        };
       }, aboutRef);
 
       return () => ctx.revert();
     }
   }, []);
 
-  const features = [
-    {
-      icon: <Code className="w-6 h-6" />,
-      title: 'Developer-First',
-      description: 'Built by developers, for developers. We understand your workflow.',
-    },
-    {
-      icon: <Users className="w-6 h-6" />,
-      title: 'Community Driven',
-      description: 'Join thousands of developers sharing knowledge and growing together.',
-    },
-    {
-      icon: <Zap className="w-6 h-6" />,
-      title: 'Lightning Fast',
-      description: 'Optimized for performance with modern web technologies.',
-    },
-    {
-      icon: <Target className="w-6 h-6" />,
-      title: 'Focused Experience',
-      description: 'Clean, minimal interface that lets you focus on what matters.',
-    },
-  ];
-
   return (
-    <section id="about" ref={aboutRef} className="w-full max-w-6xl mx-auto px-4 py-20">
-      <div className="w-full h-full text-2xl sm:text-3xl md:text-5xl flex flex-row items-center justify-center font-overusedGroteskdark:text-muted text-foreground font-light overflow-hidden p-12 sm:p-20 md:p-24">
-      <LayoutGroup>
-        <motion.p className="flex whitespace-pre" layout>
-          <motion.span
-            className="pt-0.5 sm:pt-1 md:pt-2"
-            layout
-            transition={{ type: 'spring', damping: 30, stiffness: 400 }}
-          >
-            Make it{' '}
-          </motion.span>
-          <TextRotate
-            texts={['work!', 'fancy ✽', 'right', 'fast', 'fun', 'rock', '🕶️🕶️🕶️']}
-            mainClassName="text-white px-2 sm:px-2 md:px-3 bg-[#43afbe] overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
-            staggerFrom={'last'}
-            initial={{ y: '100%' }}
-            animate={{ y: 0 }}
-            exit={{ y: '-120%' }}
-            staggerDuration={0.025}
-            splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
-            transition={{ type: 'spring', damping: 30, stiffness: 400 }}
-            rotationInterval={2000}
-          />
-        </motion.p>
-      </LayoutGroup>
+    <section
+      id="about"
+      ref={aboutRef}
+      className="relative w-full max-w-6xl mx-auto px-4 min-h-screen"
+    >
+      <div className="w-full h-full text-4xl sm:text-5xl md:text-7xl flex flex-row items-center justify-center text-foreground font-light overflow-hidden p-16 sm:p-20 md:p-40">
+        <LayoutGroup>
+          <motion.p className="flex whitespace-pre" layout>
+            <motion.span
+              className="pt-0.5 sm:pt-1 md:pt-2"
+              layout
+              transition={{ type: 'spring', damping: 30, stiffness: 400 }}
+            >
+              Make it{' '}
+            </motion.span>
+            <TextRotate
+              texts={[
+                'easy!',
+                'interactive',
+                'exam-ready',
+                'A/L focused',
+                'accessible',
+                'personalized',
+                'Sri Lankan',
+                'bilingual',
+              ]}
+              mainClassName="text-white px-2 sm:px-2 md:px-3 bg-[#43afbe] overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
+              staggerFrom={'last'}
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '-120%' }}
+              staggerDuration={0.025}
+              splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+              transition={{ type: 'spring', damping: 30, stiffness: 400 }}
+              rotationInterval={2000}
+            />
+          </motion.p>
+        </LayoutGroup>
       </div>
 
-      <div className="about-cards grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* Large Animated Text Paragraph */}
+      <div className="about-text pt-10">
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          viewport={{ once: true, margin: '-100px' }}
+          className="max-w-4xl mx-auto text-center"
+        >
+          <motion.p
+            className="text-lg sm:text-xl lg:text-4xl leading-relaxed text-muted-foreground mb-8"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
+            Welcome to <span className="text-primary font-semibold">CentrAL</span>, Sri Lanka&apos;s
+            premier digital learning platform designed specifically for Advanced Level students. We
+            understand the unique challenges of the Sri Lankan education system and have crafted an
+            experience that combines
+            <span className="text-primary font-medium"> cutting-edge technology</span> with
+            <span className="text-primary font-medium"> deep curriculum knowledge</span> to help you
+            excel.
+          </motion.p>
+
+          <motion.p
+            className="text-base sm:text-lg lg:text-xl leading-relaxed text-muted-foreground"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.6 }}
+            viewport={{ once: true }}
+          >
+            Our platform bridges the gap between traditional learning and modern educational needs,
+            offering <span className="text-primary font-medium">personalized study paths</span>,
+            <span className="text-primary font-medium"> interactive content</span>, and
+            <span className="text-primary font-medium"> comprehensive exam preparation</span> tools.
+            Join thousands of students who have already transformed their learning journey with
+            CentrAL.
+          </motion.p>
+        </motion.div>
+      </div>
+
+      {/* Floating Word Tiles */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {features.map((feature, index) => (
           <div
             key={index}
-            className="about-card relative p-8 rounded-2xl border bg-card/50 backdrop-blur-sm hover:bg-card/70 transition-all duration-500 group hover:shadow-2xl hover:-translate-y-1"
+            className={`floating-tile absolute px-4 py-3 sm:px-5 sm:py-3 rounded-full bg-gradient-to-br ${feature.color} backdrop-blur-sm border border-white/5 flex items-center justify-center shadow-sm`}
+            style={{
+              left: `${15 + index * 20}%`,
+              top: `${25 + index * 15}%`,
+            }}
           >
-            <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-              <div className="text-primary">{feature.icon}</div>
-            </div>
-
-            <h3 className="text-xl font-semibold mb-4">{feature.title}</h3>
-
-            <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
-
-            {/* Subtle glow effect on hover */}
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+            <span className="text-sm sm:text-base lg:text-lg font-medium text-foreground/70">
+              {feature.word}
+            </span>
           </div>
         ))}
       </div>
