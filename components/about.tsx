@@ -19,15 +19,15 @@ const About: React.FC = () => {
     },
     {
       word: 'Connect',
-      color: 'from-green-500/10 to-green-600/5',
+      color: 'from-blue-500/10 to-blue-600/5',
     },
     {
       word: 'Practice',
-      color: 'from-purple-500/10 to-purple-600/5',
+      color: 'from-blue-500/10 to-blue-600/5',
     },
     {
       word: 'Excel',
-      color: 'from-orange-500/10 to-orange-600/5',
+      color: 'from-blue-500/10 to-blue-600/5',
     },
   ];
 
@@ -124,7 +124,7 @@ const About: React.FC = () => {
     <section
       id="about"
       ref={aboutRef}
-      className="relative w-full max-w-6xl mx-auto px-4 min-h-screen"
+      className="relative w-full mx-auto px-4 min-h-screen"
     >
       <div className="w-full h-full text-4xl sm:text-5xl md:text-7xl flex flex-row items-center justify-center text-foreground font-light overflow-hidden p-16 sm:p-20 md:p-40">
         <LayoutGroup>
@@ -168,10 +168,10 @@ const About: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
           viewport={{ once: true, margin: '-100px' }}
-          className="max-w-4xl mx-auto text-center"
+          className="max-w-6xl mx-auto text-center"
         >
           <motion.p
-            className="text-lg sm:text-xl lg:text-4xl leading-relaxed text-muted-foreground mb-8"
+            className="text-lg sm:text-4xl lg:text-5xl leading-relaxed text-muted-foreground mb-8"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
@@ -187,7 +187,7 @@ const About: React.FC = () => {
           </motion.p>
 
           <motion.p
-            className="text-base sm:text-lg lg:text-xl leading-relaxed text-muted-foreground"
+            className="text-base  leading-relaxed text-muted-foreground"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.6 }}
