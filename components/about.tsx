@@ -3,7 +3,8 @@ import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Code, Users, Zap, Target } from 'lucide-react';
-import { Rotate } from './ui/text-flip';
+import { LayoutGroup, motion } from "motion/react"
+import { TextRotate } from "@/components/ui/text-rotate"
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -96,15 +97,30 @@ const About: React.FC = () => {
 
   return (
     <section id="about" ref={aboutRef} className="w-full max-w-6xl mx-auto px-4 py-20">
-      <div className="text-center mb-16">
-        <h2 className="about-text text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
-          About centrAL
-        </h2>
-        <p className="about-text text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-          centrAL is a modern platform designed to bring developers together, fostering
-          collaboration and innovation in the tech community. We&apos;re building the future of
-          developer networking.
-        </p>
+      <div className="w-full h-full text-2xl sm:text-3xl md:text-5xl flex flex-row items-center justify-center font-overusedGroteskdark:text-muted text-foreground font-light overflow-hidden p-12 sm:p-20 md:p-24">
+      <LayoutGroup>
+        <motion.p className="flex whitespace-pre" layout>
+          <motion.span
+            className="pt-0.5 sm:pt-1 md:pt-2"
+            layout
+            transition={{ type: 'spring', damping: 30, stiffness: 400 }}
+          >
+            Make it{' '}
+          </motion.span>
+          <TextRotate
+            texts={['work!', 'fancy ✽', 'right', 'fast', 'fun', 'rock', '🕶️🕶️🕶️']}
+            mainClassName="text-white px-2 sm:px-2 md:px-3 bg-[#43afbe] overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
+            staggerFrom={'last'}
+            initial={{ y: '100%' }}
+            animate={{ y: 0 }}
+            exit={{ y: '-120%' }}
+            staggerDuration={0.025}
+            splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+            transition={{ type: 'spring', damping: 30, stiffness: 400 }}
+            rotationInterval={2000}
+          />
+        </motion.p>
+      </LayoutGroup>
       </div>
 
       <div className="about-cards grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -125,9 +141,6 @@ const About: React.FC = () => {
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
           </div>
         ))}
-      </div>
-      <div className="mt-16 flex justify-center">
-        <Rotate />
       </div>
     </section>
   );
