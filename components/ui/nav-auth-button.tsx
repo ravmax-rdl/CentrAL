@@ -15,9 +15,11 @@ export async function NavAuthButton() {
     <div className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1">
       <div className="flex items-center gap-1 sm:gap-2 text-sm text-foreground/80">
         <User size={16} />
-        <span className="font-medium hidden sm:inline text-xs sm:text-sm">
-          {user.email?.split('@')[0]}
-        </span>
+        <Link href="/protected/">
+          <span className="font-medium hidden sm:inline text-xs sm:text-sm">
+            {user.email?.split('@')[0]}
+          </span>
+        </Link>
       </div>
       <div className="w-px h-4 bg-border/50 hidden sm:block" />
       <NavLogoutButton />
