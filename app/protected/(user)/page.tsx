@@ -1,7 +1,8 @@
 import { redirect } from 'next/navigation';
 
 import { createClient } from '@/lib/supabase/server';
-import { InfoIcon, User, Briefcase, BookOpen, Star, Github } from 'lucide-react';
+import { InfoIcon, User, Briefcase, BookOpen, Star, Github, ArrowLeft } from 'lucide-react';
+import Link from 'next/link';
 
 export default async function ProtectedPage() {
   const supabase = await createClient();
@@ -13,6 +14,16 @@ export default async function ProtectedPage() {
 
   return (
     <div className="flex-1 w-full flex flex-col gap-12">
+      {/* Back Button */}
+      <div className="w-full">
+        <Link
+          href="/"
+          className="flex items-center gap-2 text-foreground/80 hover:text-foreground transition-colors group w-fit"
+        >
+          <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+          Home
+        </Link>
+      </div>
       {/* Dashboard Section */}
       <div className="w-full">
         <div className="bg-accent text-sm p-3 px-5 rounded-md text-foreground flex gap-3 items-center">
