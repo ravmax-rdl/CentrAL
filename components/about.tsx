@@ -141,7 +141,7 @@ const About: React.FC = () => {
             Welcome to <span className="text-primary font-semibold">CentrAL</span>, Sri Lanka&apos;s
             premier digital learning platform
             <LayoutGroup>
-              <motion.p className="flex whitespace-pre" layout>
+              <motion.div className="flex whitespace-pre" layout>
                 <motion.span
                   className="pt-0.5 sm:pt-1 md:pt-2 flex justify-center"
                   layout
@@ -170,7 +170,7 @@ const About: React.FC = () => {
                   transition={{ type: 'spring', damping: 30, stiffness: 400 }}
                   rotationInterval={2000}
                 />
-              </motion.p>
+              </motion.div>
             </LayoutGroup>
             designed specifically for Advanced Level students. We understand the unique challenges
             of the Sri Lankan education system and have crafted an experience that combines
