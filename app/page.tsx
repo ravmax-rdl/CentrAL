@@ -15,23 +15,27 @@ export default function Home() {
     { name: 'Home', url: '#home', icon: 'home' },
     { name: 'About', url: '#about', icon: 'user' },
     { name: 'Features', url: '#features', icon: 'star' },
-    { name: 'Team', url: '#contributors', icon: 'users' },
     { name: 'Subjects', url: '#subjects', icon: 'bookOpen' },
+    { name: 'Team', url: '#contributors', icon: 'users' },
   ];
 
   return (
     <main className="min-h-screen relative layered-scroll-container">
       {/* Fixed Hero Background */}
-      <div className="fixed inset-0 z-0">
+      <div className="fixed inset-0 z-0 pointer-events-none">
         <Hero />
       </div>
 
       {/* Fixed Navigation */}
-      <div className="fixed top-5 left-0 right-0 z-30 flex justify-center">
-        <UserPanel />
+      <div className="fixed top-5 left-0 right-0 z-30 flex justify-center pointer-events-none">
+        <div className="pointer-events-auto">
+          <UserPanel />
+        </div>
       </div>
-      <div className="fixed top-20 left-0 right-0 z-30 flex justify-center">
-        <NavBar items={navItems} />
+      <div className="fixed top-20 left-0 right-0 z-30 flex justify-center pointer-events-none">
+        <div className="pointer-events-auto">
+          <NavBar items={navItems} />
+        </div>
       </div>
 
       {/* Scroll Indicator */}
@@ -40,15 +44,15 @@ export default function Home() {
       {/* Scrollable Content Layer */}
       <div className="relative z-20">
         {/* Spacer to allow hero to be visible initially */}
-        <div className="h-screen"></div>
+        <div className="h-screen pointer-events-none"></div>
 
         {/* Layered Content */}
         <LayeredScrollContent>
           <div className="flex flex-col gap-20 items-center py-20">
             <About />
             <Features />
-            <Contributors />
             <SubjectList />
+            <Contributors />
             <CTA />
           </div>
           <footer className="w-full h-16 flex items-center justify-center border-t border-t-foreground/10 text-center text-xs">
