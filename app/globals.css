@@ -29,6 +29,30 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+
+    /* Theme-aware backdrop colors */
+    --backdrop-light: 255 255 255;
+    --backdrop-dark: 17 24 39;
+    --backdrop-opacity: 0.6;
+
+    /* Border colors for animations */
+    --border-animation-light: 234 179 8;
+    --border-animation-dark: 59 130 246;
+    --border-animation-opacity: 0.6;
+
+    /* White overlay colors */
+    --white-overlay-low: 255 255 255;
+    --white-overlay-low-opacity: 0.1;
+    --white-overlay-medium: 255 255 255;
+    --white-overlay-medium-opacity: 0.3;
+
+    /* Cyan gradient color */
+    --cyan-gradient: 0 200 250;
+    --cyan-gradient-opacity: 0.3;
+
+    /* Transparent outline */
+    --transparent-outline: 0 0 0;
+    --transparent-outline-opacity: 0;
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -146,7 +170,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to top, rgba(0, 200, 250, 0.3), transparent);
+  background: linear-gradient(
+    to top,
+    rgba(var(--cyan-gradient), var(--cyan-gradient-opacity)),
+    transparent
+  );
   opacity: 0;
   transition: opacity 0.3s ease;
 }

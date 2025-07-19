@@ -91,8 +91,8 @@ const TrustElements: React.FC = () => {
       style={{
         backgroundColor:
           mounted && resolvedTheme === 'light'
-            ? 'rgba(255, 255, 255, 0.6)'
-            : 'rgba(17, 24, 39, 0.6)',
+            ? 'rgba(var(--backdrop-light), var(--backdrop-opacity))'
+            : 'rgba(var(--backdrop-dark), var(--backdrop-opacity))',
       }}
     >
       <div className="flex -space-x-2 sm:-space-x-3">
@@ -283,10 +283,11 @@ const GradientBars: React.FC = () => {
                 flex: '1 0 calc(100% / 15)',
                 maxWidth: 'calc(100% / 15)',
                 height: '100%',
-                background: 'linear-gradient(to top, rgb(0, 200, 250), transparent)',
+                background: 'linear-gradient(to top, rgb(var(--cyan-gradient)), transparent)',
                 transform: `scaleY(${height / 100})`,
                 transformOrigin: 'bottom',
-                outline: '1px solid rgba(0, 0, 0, 0)',
+                outline:
+                  '1px solid rgba(var(--transparent-outline), var(--transparent-outline-opacity))',
                 boxSizing: 'border-box',
               }}
             />

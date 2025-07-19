@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import tailwindcssAnimate from 'tailwindcss-animate';
 
 export default {
   darkMode: ['class'],
@@ -63,6 +64,29 @@ export default {
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))',
         },
+        // Custom backdrop colors
+        backdrop: {
+          light: 'rgba(var(--backdrop-light), var(--backdrop-opacity))',
+          dark: 'rgba(var(--backdrop-dark), var(--backdrop-opacity))',
+        },
+        // Border animation colors
+        'border-animation': {
+          light: 'rgba(var(--border-animation-light), var(--border-animation-opacity))',
+          dark: 'rgba(var(--border-animation-dark), var(--border-animation-opacity))',
+        },
+        // White overlay colors
+        'white-overlay': {
+          low: 'rgba(var(--white-overlay-low), var(--white-overlay-low-opacity))',
+          medium: 'rgba(var(--white-overlay-medium), var(--white-overlay-medium-opacity))',
+        },
+        // Cyan gradient
+        'cyan-gradient': {
+          DEFAULT: 'rgb(var(--cyan-gradient))',
+          transparent: 'rgba(var(--cyan-gradient), var(--cyan-gradient-opacity))',
+        },
+        // Transparent
+        'transparent-outline':
+          'rgba(var(--transparent-outline), var(--transparent-outline-opacity))',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -71,5 +95,5 @@ export default {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [tailwindcssAnimate],
 } satisfies Config;

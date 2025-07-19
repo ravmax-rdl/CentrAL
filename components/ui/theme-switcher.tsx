@@ -92,7 +92,9 @@ const ThemeSwitcher = () => {
             scale: [1, 1.5, 2],
             opacity: [0.5, 0.2, 0],
             borderColor:
-              resolvedTheme === 'dark' ? 'rgba(59, 130, 246, 0.6)' : 'rgba(234, 179, 8, 0.6)',
+              resolvedTheme === 'dark'
+                ? 'rgba(var(--border-animation-dark), var(--border-animation-opacity))'
+                : 'rgba(var(--border-animation-light), var(--border-animation-opacity))',
           }}
           transition={{
             duration: 0.6,
