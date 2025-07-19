@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 275.38 61.76">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #231f20;
+        stroke: #231f20;
+        stroke-miterlimit: 10;
+        stroke-width: .25px;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #424242;
+      }
+
+      .cls-3 {
+        font-family: FunnelDisplay-Bold, 'Funnel Display';
+        font-size: 48.9px;
+        font-weight: 700;
+      }
+
+      .cls-4 {
+        fill: #229799;
+      }
+
+      .cls-5 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-6 {
+        letter-spacing: -.08em;
+      }
+
+      .cls-7 {
+        fill: #48cfcb;
+      }
+
+      .cls-8 {
+        letter-spacing: -.03em;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <text class="cls-3" transform="translate(89.56 44.14)"><tspan class="cls-8" x="0" y="0">Cent</tspan><tspan class="cls-6" x="106.6" y="0">r</tspan><tspan class="cls-5" x="123.63" y="0">AL</tspan></text>
+    <g>
+      <path class="cls-2" d="M28.16,49.51l12.24,12.25h16.26l12.25-12.25c1.5-1.5.44-4.06-1.68-4.06H29.84c-2.12,0-3.18,2.56-1.68,4.06Z"/>
+      <path class="cls-7" d="M19.1,4.06l20.38,20.4h8.15l20.4-20.4c1.5-1.5.44-4.06-1.68-4.06H20.78c-2.12,0-3.18,2.56-1.68,4.06Z"/>
+      <line class="cls-1" x1="29.24" y1="34.21" x2="29.24" y2="34.21"/>
+      <path class="cls-4" d="M21.11,42.36l12.21-12.25c1.49-1.5.43-4.05-1.68-4.05H2.38c-2.12,0-3.18,2.56-1.68,4.05l12.21,12.25h8.2"/>
+    </g>
+  </g>
+</svg>

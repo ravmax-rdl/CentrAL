@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useTheme } from 'next-themes';
 import {
   Home,
   User,
@@ -41,6 +42,12 @@ const iconMap: Record<string, LucideIcon> = {
 
 export function NavBar({ items, className }: NavBarProps) {
   const [activeTab, setActiveTab] = useState(items[0].name);
+  const [mounted, setMounted] = useState(false);
+  const { resolvedTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Add scroll listener to update active tab based on scroll position
   useEffect(() => {
@@ -155,13 +162,17 @@ export function NavBar({ items, className }: NavBarProps) {
       {/* Logo Section */}
       <div className="fixed top-6 left-6 z-50">
         <div className="flex items-center justify-center bg-background/5 border border-gray-800 backdrop-blur-lg p-3 rounded-full shadow-lg">
-          <Image
-            src="/images/logowhite.png"
-            alt="CentrAL Logo"
-            width={60}
-            height={12}
-            className="w-16 h-4 sm:w-20 sm:h-5"
-          />
+          {mounted ? (
+            <Image
+              src={resolvedTheme === 'light' ? '/images/logodark.svg' : '/images/logowhite.svg'}
+              alt="CentrAL Logo"
+              width={60}
+              height={12}
+              className="w-16 h-4 sm:w-20 sm:h-5"
+            />
+          ) : (
+            <div className="w-16 h-4 sm:w-20 sm:h-5 bg-muted animate-pulse rounded" />
+          )}
         </div>
       </div>
 
