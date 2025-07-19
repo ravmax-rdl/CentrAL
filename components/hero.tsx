@@ -2,6 +2,7 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Globe } from 'lucide-react';
+import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 import Magnet from './Animations/Magnet';
 import SplitText from './ui/SplitText';
@@ -18,7 +19,13 @@ const Avatar: React.FC<AvatarProps> = ({ imageSrc, delay }) => {
       className="relative h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 rounded-full overflow-hidden border-2 border-gray-700 shadow-lg animate-fadeIn"
       style={{ animationDelay: `${delay}ms` }}
     >
-      <img src={imageSrc} alt="User avatar" className="h-full w-full object-cover" />
+      <Image
+        src={imageSrc}
+        alt="User avatar"
+        width={40}
+        height={40}
+        className="h-full w-full object-cover"
+      />
       <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
     </div>
   );
