@@ -2,9 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Star, Users, Download, ArrowRight, Github, ExternalLink } from 'lucide-react';
-import MaskedDiv from './ui/masked-div';
-import Image from 'next/image';
+import { Star, Users, Download, ArrowRight, ExternalLink } from 'lucide-react';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -56,7 +54,7 @@ const SubjectList: React.FC = () => {
 
   const projects = [
     {
-      title: 'CentrAL API',
+      title: 'Mathematics',
       description:
         'RESTful API for seamless integration with your existing development tools and workflows.',
       status: 'Active',
@@ -74,7 +72,7 @@ const SubjectList: React.FC = () => {
       progress: 95,
     },
     {
-      title: 'CentrAL CLI',
+      title: 'Physics',
       description:
         'Command-line interface for managing projects, deployments, and community interactions.',
       status: 'Beta',
@@ -92,7 +90,7 @@ const SubjectList: React.FC = () => {
       progress: 80,
     },
     {
-      title: 'CentrAL Mobile',
+      title: 'Chemistry',
       description:
         'Native mobile application for iOS and Android with real-time notifications and chat.',
       status: 'Development',
@@ -110,7 +108,7 @@ const SubjectList: React.FC = () => {
       progress: 45,
     },
     {
-      title: 'CentrAL Extensions',
+      title: 'Biology',
       description: 'Browser extensions and VS Code plugins for enhanced development productivity.',
       status: 'Planning',
       stats: {
@@ -144,14 +142,14 @@ const SubjectList: React.FC = () => {
   };
 
   return (
-    <section id="subjects" ref={listRef} className="w-full max-w-6xl mx-auto px-4 py-20">
-      <div className="text-center mb-16">
-        <div className="list-header">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
-            Subjects offered
+    <section id="subjects" ref={listRef} className="w-full max-w-7xl mx-auto px-4 py-10">
+      <div className="mb-16">
+        <div className="feature-header">
+          <h2 className="text-7xl md:text-8xl font-serif mb-6 pb-1 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent text-center">
+            <p className="inline italic">Subjects </p> offered
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Explore our open-source projects and tools that power the CentrAL ecosystem
+          <p className="text-xl text-muted-foreground leading-relaxed text-center">
+            Placeholder
           </p>
         </div>
       </div>
@@ -160,7 +158,7 @@ const SubjectList: React.FC = () => {
         {projects.map((project, index) => (
           <div
             key={index}
-            className="project-item relative p-8 rounded-2xl border bg-card transition-all duration-500"
+            className="project-item relative p-8 rounded-2xl border bg-card transition-all duration-500 "
           >
             <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between">
               <div className="flex-1">
@@ -220,26 +218,18 @@ const SubjectList: React.FC = () => {
               {/* Action buttons */}
               <div className="flex items-center gap-3 mt-6 lg:mt-0 lg:ml-6">
                 <a
-                  href={project.links.github}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg border hover:bg-accent transition-colors duration-200"
-                >
-                  <Github className="w-4 h-4" />
-                  <span className="text-sm">Code</span>
-                </a>
-
-                <a
                   href={project.links.docs}
                   className="flex items-center gap-2 px-4 py-2 rounded-lg border hover:bg-accent transition-colors duration-200"
                 >
                   <ExternalLink className="w-4 h-4" />
-                  <span className="text-sm">Docs</span>
+                  <span className="text-sm">Contribute</span>
                 </a>
 
                 <a
                   href={project.links.demo}
                   className="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200"
                 >
-                  <span className="text-sm">Demo</span>
+                  <span className="text-sm">View</span>
                   <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
@@ -247,18 +237,6 @@ const SubjectList: React.FC = () => {
           </div>
         ))}
       </div>
-      <MaskedDiv maskType="type-1" size={0.45} className="my-4">
-        <video autoPlay loop muted>
-          <source
-            src="https://videos.pexels.com/video-files/7710243/7710243-uhd_2560_1440_30fps.mp4"
-            type="video/mp4"
-          />
-        </video>
-      </MaskedDiv>
-
-      <MaskedDiv maskType="type-4" size={0.45} className="my-4">
-        <Image width={1920} height={1080} src="/images/logowhite.png" alt="" />
-      </MaskedDiv>
     </section>
   );
 };
