@@ -144,7 +144,7 @@ const SubjectList: React.FC = () => {
   };
 
   return (
-    <section id="projects" ref={listRef} className="w-full max-w-6xl mx-auto px-4 py-20">
+    <section id="subjects" ref={listRef} className="w-full max-w-6xl mx-auto px-4 py-20">
       <div className="text-center mb-16">
         <div className="list-header">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">

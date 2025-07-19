@@ -16,8 +16,7 @@ export default function Home() {
     { name: 'About', url: '#about', icon: 'user' },
     { name: 'Features', url: '#features', icon: 'star' },
     { name: 'Team', url: '#contributors', icon: 'users' },
-    { name: 'Projects', url: '#projects', icon: 'bookOpen' },
-    { name: 'Contact', url: '#cta', icon: 'briefcase' },
+    { name: 'Subjects', url: '#subjects', icon: 'bookOpen' },
   ];
 
   return (

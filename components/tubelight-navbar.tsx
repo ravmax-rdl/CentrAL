@@ -47,15 +47,15 @@ export function NavBar({ items, className }: NavBarProps) {
       const scrollPosition = window.scrollY;
       const viewportHeight = window.innerHeight;
 
-      // Special handling for Home section - active when scroll is less than 50% of viewport height
-      if (scrollPosition < viewportHeight * 0.5) {
+      // Special handling for Home section - active when scroll is less than viewport height
+      if (scrollPosition < viewportHeight * 0.8) {
         setActiveTab('Home');
         return;
       }
 
-      // For other sections, find which section's top is closest to the current scroll position
+      // For other sections, find which section is currently most visible
       let currentSection = 'Home';
-      let closestDistance = Infinity;
+      let bestMatch = -1;
 
       for (const item of items) {
         if (item.url.startsWith('#') && item.name !== 'Home') {
@@ -64,22 +64,24 @@ export function NavBar({ items, className }: NavBarProps) {
             // Get the actual position of the element
             const elementRect = element.getBoundingClientRect();
             const elementTop = elementRect.top + scrollPosition;
+            const elementBottom = elementTop + element.offsetHeight;
 
-            // Check if this section is currently in view or has been passed
-            const sectionStart = elementTop - 200; // Start considering section 200px before it appears
-            const sectionEnd = elementTop + element.offsetHeight;
+            // Calculate how much of the section is in the viewport
+            const viewportTop = scrollPosition + 100; // Account for fixed navbar
+            const viewportBottom = scrollPosition + viewportHeight;
 
-            // If we're within or past this section's range
-            if (scrollPosition >= sectionStart && scrollPosition < sectionEnd) {
-              currentSection = item.name;
-              break;
-            }
+            // Check if section is in viewport
+            const isInViewport = elementBottom > viewportTop && elementTop < viewportBottom;
 
-            // Fallback: find section closest to current scroll position
-            if (scrollPosition >= sectionStart) {
-              const distance = Math.abs(scrollPosition - elementTop);
-              if (distance < closestDistance) {
-                closestDistance = distance;
+            if (isInViewport) {
+              // Calculate visibility percentage
+              const visibleTop = Math.max(elementTop, viewportTop);
+              const visibleBottom = Math.min(elementBottom, viewportBottom);
+              const visibleHeight = visibleBottom - visibleTop;
+              const visibilityPercentage = visibleHeight / (viewportBottom - viewportTop);
+
+              if (visibilityPercentage > bestMatch) {
+                bestMatch = visibilityPercentage;
                 currentSection = item.name;
               }
             }
@@ -128,9 +130,15 @@ export function NavBar({ items, className }: NavBarProps) {
         const currentScrollTop = window.scrollY;
         const elementTop = elementRect.top + currentScrollTop;
 
-        // Calculate target position with a reasonable offset for better visibility
-        // Scroll to show the section nicely in the viewport, not right at the top
-        const offset = 150; // Adjusted offset for better section visibility
+        // Calculate target position to center the section in the viewport
+        const viewportHeight = window.innerHeight;
+        const elementHeight = element.offsetHeight;
+
+        // Try to center the section, but ensure it's fully visible
+        let offset = (viewportHeight - elementHeight) / 2;
+        offset = Math.max(offset, 100); // Minimum offset for fixed navbar
+        offset = Math.min(offset, 200); // Maximum offset to avoid too much spacing
+
         const targetPosition = elementTop - offset;
 
         window.scrollTo({
