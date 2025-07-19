@@ -52,8 +52,6 @@ const Features: React.FC = () => {
     }
   }, []);
 
- 
-
   return (
     <section id="features" ref={featuresRef} className="w-full max-w-7xl mx-auto px-4 py-20">
       <div className="text-center mb-16">
@@ -69,14 +67,12 @@ const Features: React.FC = () => {
 
       <MagicBento
         textAutoHide={true}
-        enableStars={true}
         enableSpotlight={true}
         enableBorderGlow={true}
         enableTilt={true}
         enableMagnetism={true}
         clickEffect={true}
         spotlightRadius={300}
-        particleCount={0}
         glowColor="32, 200, 255"
       />
     </section>
