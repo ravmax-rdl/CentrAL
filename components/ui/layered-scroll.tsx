@@ -62,10 +62,11 @@ export const LayeredScrollContent: React.FC<LayeredScrollProps> = ({
         gsap.fromTo(
           contentRef.current,
           {
-            borderTopColor: 'rgba(255, 255, 255, 0.1)',
+            borderTopColor: 'rgba(var(--white-overlay-low), var(--white-overlay-low-opacity))',
           },
           {
-            borderTopColor: 'rgba(255, 255, 255, 0.3)',
+            borderTopColor:
+              'rgba(var(--white-overlay-medium), var(--white-overlay-medium-opacity))',
             duration: 1,
             scrollTrigger: {
               trigger: contentRef.current,

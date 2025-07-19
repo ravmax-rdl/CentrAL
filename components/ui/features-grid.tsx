@@ -3,6 +3,7 @@ import { Shield, Users } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Image from 'next/image';
 
 // Register GSAP plugin
 if (typeof window !== 'undefined') {
@@ -433,19 +434,23 @@ export function FeaturesGrid() {
                         Likeur
                       </span>
                       <div className="ring-background size-7 ring-4">
-                        <img
+                        <Image
                           className="size-full rounded-full"
-                          src="https://avatars.githubusercontent.com/u/102558960?v=4"
+                          src="https://images.pexels.com/photos/2726111/pexels-photo-2726111.jpeg?auto=compress&cs=tinysrgb&w=100"
                           alt=""
+                          width={28}
+                          height={28}
                         />
                       </div>
                     </div>
                     <div className="relative ml-[calc(50%-1rem)] flex items-center gap-2">
                       <div className="ring-background size-8 ring-4">
-                        <img
+                        <Image
                           className="size-full rounded-full"
-                          src="https://avatars.githubusercontent.com/u/47919550?v=4"
+                          src="https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg?auto=compress&cs=tinysrgb&w=100"
                           alt=""
+                          width={32}
+                          height={32}
                         />
                       </div>
                       <span className="block h-fit rounded border px-2 py-1 text-xs shadow-sm">
@@ -457,10 +462,12 @@ export function FeaturesGrid() {
                         B. Ng
                       </span>
                       <div className="ring-background size-7 ring-4">
-                        <img
+                        <Image
                           className="size-full rounded-full"
-                          src="https://avatars.githubusercontent.com/u/31113941?v=4"
+                          src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=100"
                           alt=""
+                          width={28}
+                          height={28}
                         />
                       </div>
                     </div>

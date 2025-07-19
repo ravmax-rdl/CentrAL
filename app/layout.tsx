@@ -39,9 +39,10 @@ export default function RootLayout({
       <body className={`${inter.className} ${instrumentSerif.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
-          disableTransitionOnChange
+          disableTransitionOnChange={true}
+          storageKey="central-theme"
         >
           {children}
         </ThemeProvider>

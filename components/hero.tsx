@@ -3,18 +3,22 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
+import { useTheme } from 'next-themes';
 import Magnet from './Animations/Magnet';
 import SplitText from './ui/SplitText';
 
 type AvatarProps = {
   imageSrc: string;
   delay: number;
+  isDarkMode?: boolean;
 };
 
-const Avatar: React.FC<AvatarProps> = ({ imageSrc, delay }) => {
+const Avatar: React.FC<AvatarProps> = ({ imageSrc, delay, isDarkMode = true }) => {
   return (
     <div
-      className="relative h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 rounded-full overflow-hidden border-2 border-gray-700 shadow-lg animate-fadeIn"
+      className={`relative h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 rounded-full overflow-hidden border-2 shadow-lg animate-fadeIn ${
+        isDarkMode ? 'border-gray-700' : 'border-gray-300'
+      }`}
       style={{ animationDelay: `${delay}ms` }}
     >
       <Image
@@ -32,6 +36,12 @@ const Avatar: React.FC<AvatarProps> = ({ imageSrc, delay }) => {
 const TrustElements: React.FC = () => {
   const [userCount, setUserCount] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
+  const { resolvedTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const avatars = [
     'https://images.pexels.com/photos/2726111/pexels-photo-2726111.jpeg?auto=compress&cs=tinysrgb&w=100',
@@ -76,19 +86,32 @@ const TrustElements: React.FC = () => {
   };
 
   return (
-    <div className="inline-flex items-center space-x-3 bg-gray-900/60 backdrop-blur-sm rounded-full py-2 px-3 sm:py-2 sm:px-4 text-xs sm:text-sm">
+    <div
+      className="inline-flex items-center space-x-3 backdrop-blur-sm rounded-full py-2 px-3 sm:py-2 sm:px-4 text-xs sm:text-sm"
+      style={{
+        backgroundColor:
+          mounted && resolvedTheme === 'light'
+            ? 'rgba(var(--backdrop-light), var(--backdrop-opacity))'
+            : 'rgba(var(--backdrop-dark), var(--backdrop-opacity))',
+      }}
+    >
       <div className="flex -space-x-2 sm:-space-x-3">
         {avatars.map((avatar, index) => (
-          <Avatar key={index} imageSrc={avatar} delay={index * 200} />
+          <Avatar
+            key={index}
+            imageSrc={avatar}
+            delay={index * 200}
+            isDarkMode={!mounted || resolvedTheme !== 'light'}
+          />
         ))}
       </div>
       <p
-        className="text-white animate-fadeIn whitespace-nowrap font-inter"
+        className={`animate-fadeIn whitespace-nowrap font-inter ${
+          mounted && resolvedTheme === 'light' ? 'text-gray-800' : 'text-white'
+        }`}
         style={{ animationDelay: '800ms' }}
       >
-        <span className="text-white font-semibold">
-          {loading ? '...' : formatUserCount(userCount)}
-        </span>{' '}
+        <span className="font-semibold">{loading ? '...' : formatUserCount(userCount)}</span>{' '}
         registered users
       </p>
     </div>
@@ -260,10 +283,11 @@ const GradientBars: React.FC = () => {
                 flex: '1 0 calc(100% / 15)',
                 maxWidth: 'calc(100% / 15)',
                 height: '100%',
-                background: 'linear-gradient(to top, rgb(0, 200, 250), transparent)',
+                background: 'linear-gradient(to top, rgb(var(--cyan-gradient)), transparent)',
                 transform: `scaleY(${height / 100})`,
                 transformOrigin: 'bottom',
-                outline: '1px solid rgba(0, 0, 0, 0)',
+                outline:
+                  '1px solid rgba(var(--transparent-outline), var(--transparent-outline-opacity))',
                 boxSizing: 'border-box',
               }}
             />
@@ -322,7 +346,7 @@ export const Hero: React.FC = () => {
             <TrustElements />
           </Magnet>
         </div>
-        <h1 className="w-full text-white leading-tight tracking-tight mb-1 sm:mb-2 animate-fadeIn px-4">
+        <h1 className="w-full leading-tight tracking-tight mb-1 sm:mb-2 animate-fadeIn px-4">
           <span className="block font-instrument-serif font-normal text-[clamp(2.5rem,6vw,6rem)] whitespace-nowrap">
             Redefining boundaries,
           </span>
