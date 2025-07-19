@@ -1,12 +1,10 @@
 'use client';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Globe } from 'lucide-react';
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 import Magnet from './Animations/Magnet';
 import SplitText from './ui/SplitText';
-import WrapButton from './ui/wrap-button';
 
 type AvatarProps = {
   imageSrc: string;
@@ -346,12 +344,6 @@ export const Hero: React.FC = () => {
             rootMargin="-100px"
             textAlign="center"
           />
-        </div>
-        <div className="w-full flex justify-center relative z-20">
-          <WrapButton className="mt-10" href="/auth/sign-up">
-            <Globe className="animate-spin " />
-            Get started
-          </WrapButton>
         </div>
       </div>
     </section>

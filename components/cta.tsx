@@ -10,8 +10,10 @@ import {
   Github,
   MessageCircle,
   Twitter,
+  Globe,
 } from 'lucide-react';
 import FlipLink from './ui/text-effect-flipper';
+import WrapButton from './ui/wrap-button';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -118,15 +120,11 @@ const CTA: React.FC = () => {
             careers.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="group relative px-8 py-4 bg-primary text-primary-foreground rounded-lg font-semibold text-lg hover:bg-primary/90 transition-all duration-300 flex items-center gap-3">
-              <span>Get Started Free</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-            </button>
-
-            <button className="px-8 py-4 border border-primary text-primary rounded-lg font-semibold text-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300">
-              Join Forum
-            </button>
+          <div className="w-full flex ">
+            <WrapButton className="mt-10" href="/auth/sign-up">
+              <Globe className="animate-spin " />
+              Get started
+            </WrapButton>
           </div>
         </div>
       </div>
