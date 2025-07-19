@@ -85,7 +85,7 @@ const TrustElements: React.FC = () => {
         ))}
       </div>
       <p
-        className="text-white animate-fadeIn whitespace-nowrap font-space"
+        className="text-white animate-fadeIn whitespace-nowrap font-inter"
         style={{ animationDelay: '800ms' }}
       >
         <span className="text-white font-semibold">
@@ -325,10 +325,10 @@ export const Hero: React.FC = () => {
           </Magnet>
         </div>
         <h1 className="w-full text-white leading-tight tracking-tight mb-1 sm:mb-2 animate-fadeIn px-4">
-          <span className="block font-inter font-medium text-[clamp(1.5rem,6vw,3.75rem)] whitespace-nowrap">
+          <span className="block font-instrument-serif font-normal text-[clamp(1.5rem,6vw,3.75rem)] whitespace-nowrap">
             Redefining Whats Possible,
           </span>
-          <span className="block font-instrument italic text-[clamp(1.5rem,6vw,3.75rem)] whitespace-nowrap">
+          <span className="block font-instrument-serif italic text-[clamp(1.5rem,6vw,3.75rem)] whitespace-nowrap">
             One lesson at a time.
           </span>
           <div className="w-full p-[1px] bg-gradient-to-r from-transparent via-foreground/10 to-transparent my-8" />
