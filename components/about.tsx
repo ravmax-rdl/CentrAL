@@ -15,19 +15,19 @@ const About: React.FC = () => {
   const features = [
     {
       word: 'Learn',
-      color: 'from-blue-500/10 to-blue-600/5',
+      color: 'grey-300/30 to-grey-300/20',
     },
     {
       word: 'Connect',
-      color: 'from-blue-500/10 to-blue-600/5',
+      color: 'grey-300/30 to-grey-300/20',
     },
     {
       word: 'Practice',
-      color: 'from-blue-500/10 to-blue-600/5',
+      color: 'grey-300/30 to-grey-300/20',
     },
     {
       word: 'Excel',
-      color: 'from-blue-500/10 to-blue-600/5',
+      color: 'grey-300/30 to-grey-300/20',
     },
   ];
 
@@ -129,37 +129,28 @@ const About: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
           viewport={{ once: true, margin: '-100px' }}
-          className="max-w-6xl mx-auto text-center"
+          className="max-w-7xl mx-auto text-center px-4"
         >
           <motion.div
-            className="text-lg sm:text-4xl lg:text-5xl leading-relaxed text-muted-foreground mb-8"
+            className="text-2xl sm:text-5xl lg:text-6xl leading-loose text-muted-foreground mb-8"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            Welcome to <span className="text-primary font-semibold">CentrAL</span>, Sri Lanka&apos;s
-            premier digital learning platform
+            <span className="text-primary font-semibold">centrAL</span> is a student-powered
+            learning platform revolutionizing A/L education in Sri Lanka. By crowdsourcing
             <LayoutGroup>
-              <motion.div className="flex whitespace-pre" layout>
+              <motion.div className="flex whitespace-pre justify-center" layout>
                 <motion.span
                   className="pt-0.5 sm:pt-1 md:pt-2 flex justify-center"
                   layout
                   transition={{ type: 'spring', damping: 30, stiffness: 400 }}
                 >
-                  Make it{' '}
+                  high-quality{' '}
                 </motion.span>
                 <TextRotate
-                  texts={[
-                    'easy!',
-                    'interactive',
-                    'exam-ready',
-                    'A/L focused',
-                    'accessible',
-                    'personalized',
-                    'Sri Lankan',
-                    'bilingual',
-                  ]}
+                  texts={['notes', 'past papers', 'revision tools']}
                   mainClassName="text-white px-2 sm:px-2 md:px-3 bg-[#43afbe] overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
                   staggerFrom={'last'}
                   initial={{ y: '100%' }}
@@ -172,11 +163,9 @@ const About: React.FC = () => {
                 />
               </motion.div>
             </LayoutGroup>
-            designed specifically for Advanced Level students. We understand the unique challenges
-            of the Sri Lankan education system and have crafted an experience that combines
-            <span className="text-primary font-medium"> cutting-edge technology</span> with
-            <span className="text-primary font-medium"> deep curriculum knowledge</span> to help you
-            excel.
+            centrAL makes top-tier resources accessible to{' '}
+            <span className="text-primary font-semibold">everyone</span>. It’s more than a
+            repository; it’s a movement for equitable, collaborative learning.
           </motion.div>
         </motion.div>
       </div>
@@ -186,7 +175,7 @@ const About: React.FC = () => {
         {features.map((feature, index) => (
           <div
             key={index}
-            className={`floating-tile absolute px-4 py-3 sm:px-5 sm:py-3 rounded-full bg-gradient-to-br ${feature.color} backdrop-blur-sm border border-white/5 flex items-center justify-center shadow-sm`}
+            className={`floating-tile absolute px-4 py-3 sm:px-5 sm:py-3 rounded-full bg-gradient-to-br ${feature.color} backdrop-blur-lg border border-white/20 flex items-center justify-center shadow-sm`}
             style={{
               left: `${15 + index * 20}%`,
               top: `${25 + index * 15}%`,
