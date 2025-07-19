@@ -1,8 +1,8 @@
 import { redirect } from 'next/navigation';
-
 import { createClient } from '@/lib/supabase/server';
-import { InfoIcon, User, Briefcase, BookOpen, Star, Github, ArrowLeft } from 'lucide-react';
+import { InfoIcon, User, Briefcase, BookOpen, Star, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+import ProfileEditor from '../../../components/ui/profile-editor';
 
 export default async function ProtectedPage() {
   const supabase = await createClient();
@@ -103,148 +103,8 @@ export default async function ProtectedPage() {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="w-full">
-        <div className="flex items-center gap-3 mb-6">
-          <Briefcase size={24} className="text-primary" />
-          <h2 className="font-bold text-2xl">Projects</h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="bg-card border rounded-lg p-6">
-            <h3 className="font-semibold text-lg mb-2">React Dashboard</h3>
-            <p className="text-foreground/80 mb-4">
-              A comprehensive dashboard built with React and TypeScript.
-            </p>
-            <div className="flex gap-2">
-              <span className="bg-primary/10 text-primary px-2 py-1 rounded text-xs">React</span>
-              <span className="bg-primary/10 text-primary px-2 py-1 rounded text-xs">
-                TypeScript
-              </span>
-            </div>
-          </div>
-
-          <div className="bg-card border rounded-lg p-6">
-            <h3 className="font-semibold text-lg mb-2">Mobile App</h3>
-            <p className="text-foreground/80 mb-4">
-              Cross-platform mobile application using React Native.
-            </p>
-            <div className="flex gap-2">
-              <span className="bg-primary/10 text-primary px-2 py-1 rounded text-xs">
-                React Native
-              </span>
-              <span className="bg-primary/10 text-primary px-2 py-1 rounded text-xs">Expo</span>
-            </div>
-          </div>
-
-          <div className="bg-card border rounded-lg p-6">
-            <h3 className="font-semibold text-lg mb-2">API Gateway</h3>
-            <p className="text-foreground/80 mb-4">
-              Microservices API gateway built with Node.js and Express.
-            </p>
-            <div className="flex gap-2">
-              <span className="bg-primary/10 text-primary px-2 py-1 rounded text-xs">Node.js</span>
-              <span className="bg-primary/10 text-primary px-2 py-1 rounded text-xs">Express</span>
-            </div>
-          </div>
-
-          <div className="bg-card border rounded-lg p-6 border-dashed opacity-60">
-            <h3 className="font-semibold text-lg mb-2">New Project</h3>
-            <p className="text-foreground/80 mb-4">Start a new project to expand your portfolio.</p>
-            <button className="bg-primary text-primary-foreground px-4 py-2 rounded text-sm hover:bg-primary/90 transition-colors">
-              + Create Project
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Resources Section */}
-      <section id="resources" className="w-full">
-        <div className="flex items-center gap-3 mb-6">
-          <BookOpen size={24} className="text-primary" />
-          <h2 className="font-bold text-2xl">Learning Resources</h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div className="bg-card border rounded-lg p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <Github size={16} />
-              <h3 className="font-semibold">React Documentation</h3>
-            </div>
-            <p className="text-foreground/80 text-sm mb-3">
-              Official React documentation and tutorials.
-            </p>
-            <a href="#" className="text-primary text-sm hover:underline">
-              View Resource →
-            </a>
-          </div>
-
-          <div className="bg-card border rounded-lg p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <BookOpen size={16} />
-              <h3 className="font-semibold">TypeScript Handbook</h3>
-            </div>
-            <p className="text-foreground/80 text-sm mb-3">
-              Complete guide to TypeScript features and best practices.
-            </p>
-            <a href="#" className="text-primary text-sm hover:underline">
-              View Resource →
-            </a>
-          </div>
-
-          <div className="bg-card border rounded-lg p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <Star size={16} />
-              <h3 className="font-semibold">Next.js Tutorial</h3>
-            </div>
-            <p className="text-foreground/80 text-sm mb-3">
-              Learn Next.js framework for production-ready apps.
-            </p>
-            <a href="#" className="text-primary text-sm hover:underline">
-              View Resource →
-            </a>
-          </div>
-
-          <div className="bg-card border rounded-lg p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <Github size={16} />
-              <h3 className="font-semibold">Supabase Docs</h3>
-            </div>
-            <p className="text-foreground/80 text-sm mb-3">
-              Backend-as-a-Service platform documentation.
-            </p>
-            <a href="#" className="text-primary text-sm hover:underline">
-              View Resource →
-            </a>
-          </div>
-
-          <div className="bg-card border rounded-lg p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <BookOpen size={16} />
-              <h3 className="font-semibold">Tailwind CSS</h3>
-            </div>
-            <p className="text-foreground/80 text-sm mb-3">
-              Utility-first CSS framework for rapid UI development.
-            </p>
-            <a href="#" className="text-primary text-sm hover:underline">
-              View Resource →
-            </a>
-          </div>
-
-          <div className="bg-card border rounded-lg p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <Star size={16} />
-              <h3 className="font-semibold">Design Patterns</h3>
-            </div>
-            <p className="text-foreground/80 text-sm mb-3">
-              Software design patterns and architectural principles.
-            </p>
-            <a href="#" className="text-primary text-sm hover:underline">
-              View Resource →
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* Profile Editor Section */}
+      <ProfileEditor user={data.user} />
     </div>
   );
 }
