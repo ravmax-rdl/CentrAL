@@ -9,6 +9,7 @@ import CTA from '@/components/cta';
 import SubjectList from '@/components/subject-list';
 import { LayeredScrollContent } from '@/components/ui/layered-scroll';
 import ScrollIndicator from '@/components/ui/scroll-indicator';
+import Footer from '@/components/footer';
 
 export default function Home() {
   const navItems = [
@@ -55,15 +56,8 @@ export default function Home() {
             <Contributors />
             <CTA />
           </div>
-          <footer className="w-full h-16 flex items-center justify-between px-6 border-t border-t-foreground/10 text-center text-xs">
-            <div className="flex items-center gap-4 text-muted-foreground">
-              <span>© 2025 centrAL</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <ThemeSwitcher />
-            </div>
-          </footer>
         </LayeredScrollContent>
+        <Footer />
       </div>
     </main>
   );
