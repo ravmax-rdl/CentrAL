@@ -32,12 +32,50 @@ const Avatar: React.FC<AvatarProps> = ({ imageSrc, delay }) => {
 };
 
 const TrustElements: React.FC = () => {
+  const [userCount, setUserCount] = useState<number | null>(null);
+  const [loading, setLoading] = useState(true);
+
   const avatars = [
     'https://images.pexels.com/photos/2726111/pexels-photo-2726111.jpeg?auto=compress&cs=tinysrgb&w=100',
     'https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg?auto=compress&cs=tinysrgb&w=100',
     'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=100',
     'https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=100',
   ];
+
+  useEffect(() => {
+    const fetchUserCount = async () => {
+      try {
+        const { createClient } = await import('@/lib/supabase/client');
+        const supabase = createClient();
+
+        const { count, error } = await supabase
+          .from('users')
+          .select('*', { count: 'exact', head: true });
+
+        if (error) {
+          console.warn('Error fetching user count:', error);
+          setUserCount(2400); // fallback to approximate count
+        } else {
+          setUserCount(count || 0);
+        }
+      } catch (error) {
+        console.warn('Error fetching user count:', error);
+        setUserCount(2400); // fallback to approximate count
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserCount();
+  }, []);
+
+  const formatUserCount = (count: number | null) => {
+    if (count === null) return '...';
+    if (count >= 1000) {
+      return `${(count / 1000).toFixed(1)}K`;
+    }
+    return count.toString();
+  };
 
   return (
     <div className="inline-flex items-center space-x-3 bg-gray-900/60 backdrop-blur-sm rounded-full py-2 px-3 sm:py-2 sm:px-4 text-xs sm:text-sm">
@@ -50,7 +88,10 @@ const TrustElements: React.FC = () => {
         className="text-white animate-fadeIn whitespace-nowrap font-space"
         style={{ animationDelay: '800ms' }}
       >
-        <span className="text-white font-semibold">2.4K</span> currently on the waitlist
+        <span className="text-white font-semibold">
+          {loading ? '...' : formatUserCount(userCount)}
+        </span>{' '}
+        registered users
       </p>
     </div>
   );
