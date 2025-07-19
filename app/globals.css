@@ -68,6 +68,26 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif;
+    transition:
+      background-color 0.1s ease-in-out,
+      color 0.1s ease-in-out;
+  }
+
+  /* Smooth transitions for theme switching */
+  *,
+  *::before,
+  *::after {
+    transition:
+      background-color 0.1s ease-in-out,
+      border-color 0.1s ease-in-out,
+      color 0.1s ease-in-out,
+      fill 0.1s ease-in-out,
+      stroke 0.1s ease-in-out;
+  }
+
+  /* Prevent transition on page load */
+  .theme-transitioning * {
+    transition: none !important;
   }
 }
 
