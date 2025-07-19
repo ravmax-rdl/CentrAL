@@ -325,17 +325,17 @@ export const Hero: React.FC = () => {
           </Magnet>
         </div>
         <h1 className="w-full text-white leading-tight tracking-tight mb-1 sm:mb-2 animate-fadeIn px-4">
-          <span className="block font-instrument-serif font-normal text-[clamp(1.5rem,6vw,3.75rem)] whitespace-nowrap">
-            Redefining Whats Possible,
+          <span className="block font-instrument-serif font-normal text-[clamp(2.5rem,6vw,6rem)] whitespace-nowrap">
+            Redefining boundaries,
           </span>
-          <span className="block font-instrument-serif italic text-[clamp(1.5rem,6vw,3.75rem)] whitespace-nowrap">
-            One lesson at a time.
+          <span className="block font-instrument-serif italic text-[clamp(1.75rem,6vw,5rem)] whitespace-nowrap">
+            powered by sharing.
           </span>
           <div className="w-full p-[1px] bg-gradient-to-r from-transparent via-foreground/10 to-transparent my-8" />
         </h1>
-        <div className="text-2xl lg:text-3xl mx-auto max-w-2xl text-center">
+        <div className="text-2xl mx-auto max-w-3xl text-center">
           <SplitText
-            text="centrAL aims to be an educational resource sharing hub."
+            text="centrAL is collaborative learning platform for Sri Lankan students."
             delay={10}
             duration={2}
             ease="elastic.out(1, 0.3)"
