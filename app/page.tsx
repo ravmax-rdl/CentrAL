@@ -1,25 +1,65 @@
-import { EnvVarWarning } from '@/components/env-var-warning';
-import { AuthButton } from '@/components/auth-button';
+import { UserPanel } from '@/components/ui/user-panel';
+import { ThemeSwitcher } from '@/components/ui/theme-switcher';
+import { NavBar } from '@/components/tubelight-navbar';
 import { Hero } from '@/components/hero';
-import { ThemeSwitcher } from '@/components/theme-switcher';
-import { hasEnvVars } from '@/lib/utils';
-import Link from 'next/link';
+import About from '@/components/about';
+import Features from '@/components/features';
+import Contributors from '@/components/contributors';
+import CTA from '@/components/cta';
+import SubjectList from '@/components/subject-list';
+import { LayeredScrollContent } from '@/components/ui/layered-scroll';
+import ScrollIndicator from '@/components/ui/scroll-indicator';
 
 export default function Home() {
+  const navItems = [
+    { name: 'Home', url: '#home', icon: 'home' },
+    { name: 'About', url: '#about', icon: 'user' },
+    { name: 'Features', url: '#features', icon: 'star' },
+    { name: 'Subjects', url: '#subjects', icon: 'bookOpen' },
+    { name: 'Team', url: '#contributors', icon: 'users' },
+  ];
+
   return (
-    <main className="min-h-screen flex flex-col">
-      <div className="flex-1 w-full flex flex-col gap-20 items-center">
-        <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-          <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
-            <Link href={'/'}>centrAL</Link>
-            {!hasEnvVars ? <EnvVarWarning /> : <AuthButton />}
-          </div>
-        </nav>
+    <main className="min-h-screen relative layered-scroll-container">
+      {/* Fixed Hero Background */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
         <Hero />
       </div>
-      <footer className="w-full h-16 flex items-center justify-center border-t border-t-foreground/10 text-center text-xs">
-        <ThemeSwitcher />
-      </footer>
+
+      {/* Fixed Navigation */}
+      <div className="fixed top-5 left-0 right-0 z-30 flex justify-center pointer-events-none">
+        <div className="pointer-events-auto">
+          <UserPanel />
+        </div>
+      </div>
+      <div className="fixed top-20 left-0 right-0 z-30 flex justify-center pointer-events-none">
+        <div className="pointer-events-auto">
+          <NavBar items={navItems} />
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <ScrollIndicator />
+
+      {/* Scrollable Content Layer */}
+      <div className="relative z-20">
+        {/* Spacer to allow hero to be visible initially */}
+        <div className="h-screen pointer-events-none"></div>
+
+        {/* Layered Content */}
+        <LayeredScrollContent>
+          <div className="flex flex-col gap-20 items-center py-20">
+            <About />
+            <Features />
+            <SubjectList />
+            <Contributors />
+            <CTA />
+          </div>
+          <footer className="w-full h-16 flex items-center justify-center border-t border-t-foreground/10 text-center text-xs">
+            <ThemeSwitcher />
+          </footer>
+        </LayeredScrollContent>
+      </div>
     </main>
   );
 }

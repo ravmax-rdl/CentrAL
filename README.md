@@ -7,7 +7,7 @@
 </p>
 
 ## Overview
-CentrAL aims to be an educational resource sharing hub.
+centrAL aims to be an educational resource sharing hub.
 
 ## Project Status
 🚧 **Work in Progress** 🚧
