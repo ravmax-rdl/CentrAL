@@ -1,5 +1,4 @@
 import { UserPanel } from '@/components/ui/user-panel';
-import { ThemeSwitcher } from '@/components/ui/theme-switcher';
 import { NavBar } from '@/components/tubelight-navbar';
 import { Hero } from '@/components/hero';
 import About from '@/components/about';
