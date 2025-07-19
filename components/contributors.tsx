@@ -56,54 +56,12 @@ const Contributors: React.FC = () => {
 
   const contributors = [
     {
-      name: 'Alex Chen',
+      name: 'Ravindu Liyanage',
       role: 'Lead Developer',
       avatar:
-        'https://images.pexels.com/photos/2726111/pexels-photo-2726111.jpeg?auto=compress&cs=tinysrgb&w=200',
-      bio: 'Full-stack developer with 8+ years of experience in React and Node.js.',
-      skills: ['React', 'Node.js', 'TypeScript', 'AWS'],
-      social: {
-        github: '#',
-        linkedin: '#',
-        twitter: '#',
-        website: '#',
-      },
-    },
-    {
-      name: 'Sarah Johnson',
-      role: 'UI/UX Designer',
-      avatar:
-        'https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg?auto=compress&cs=tinysrgb&w=200',
-      bio: 'Creative designer passionate about creating beautiful and functional interfaces.',
-      skills: ['Figma', 'Adobe XD', 'Prototyping', 'User Research'],
-      social: {
-        github: '#',
-        linkedin: '#',
-        twitter: '#',
-        website: '#',
-      },
-    },
-    {
-      name: 'Mike Rodriguez',
-      role: 'DevOps Engineer',
-      avatar:
-        'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=200',
-      bio: 'Infrastructure specialist focused on scalable and reliable deployment solutions.',
-      skills: ['Docker', 'Kubernetes', 'CI/CD', 'Cloud Architecture'],
-      social: {
-        github: '#',
-        linkedin: '#',
-        twitter: '#',
-        website: '#',
-      },
-    },
-    {
-      name: 'Emma Thompson',
-      role: 'Community Manager',
-      avatar:
-        'https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=200',
-      bio: 'Building and nurturing our developer community with engaging content and events.',
-      skills: ['Community Building', 'Content Strategy', 'Event Planning', 'Marketing'],
+        'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=100',
+      bio: 'Peace ✌️',
+      skills: ['No skills'],
       social: {
         github: '#',
         linkedin: '#',
@@ -114,19 +72,15 @@ const Contributors: React.FC = () => {
   ];
 
   return (
-    <section
-      id="contributors"
-      ref={contributorsRef}
-      className="w-full max-w-7xl mx-auto px-4 py-20"
-    >
-      <div className="text-center mb-16">
-        <div className="contributors-header">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
-            Meet the Team
+      <section id="contributors" ref={contributorsRef} className="w-full max-w-7xl mx-auto px-4 py-10">
+      <div className="mb-16">
+        <div className="feature-header">
+          <h2 className="text-7xl md:text-8xl font-serif mb-6 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent text-left">
+            Meet <p className="inline italic">the team</p>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            The passionate individuals behind centrAL, working to create the best developer
-            experience
+          <p className="text-xl text-muted-foreground leading-relaxed text-left">
+          The passionate individuals behind centrAL, working to create the best developer
+          experience.
           </p>
         </div>
       </div>
@@ -150,10 +104,6 @@ const Contributors: React.FC = () => {
                   />
                 </div>
 
-                {/* Status indicator */}
-                <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-card flex items-center justify-center">
-                  <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
-                </div>
               </div>
 
               <h3 className="text-xl font-semibold mb-2">{contributor.name}</h3>
