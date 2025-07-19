@@ -131,7 +131,7 @@ const About: React.FC = () => {
           viewport={{ once: true, margin: '-100px' }}
           className="max-w-6xl mx-auto text-center"
         >
-          <motion.p
+          <motion.div
             className="text-lg sm:text-4xl lg:text-5xl leading-relaxed text-muted-foreground mb-8"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -177,7 +177,7 @@ const About: React.FC = () => {
             <span className="text-primary font-medium"> cutting-edge technology</span> with
             <span className="text-primary font-medium"> deep curriculum knowledge</span> to help you
             excel.
-          </motion.p>
+          </motion.div>
         </motion.div>
       </div>
 
