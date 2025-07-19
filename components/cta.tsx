@@ -2,17 +2,8 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import {
-  ArrowRight,
-  MessageSquare,
-  Users,
-  Zap,
-  Github,
-  MessageCircle,
-  Twitter,
-  Globe,
-} from 'lucide-react';
-import FlipLink from './ui/text-effect-flipper';
+import { MessageSquare, Users, Zap, Globe } from 'lucide-react';
+// import FlipLink from './ui/text-effect-flipper';
 import WrapButton from './ui/wrap-button';
 
 if (typeof window !== 'undefined') {
@@ -65,35 +56,11 @@ const CTA: React.FC = () => {
     }
   }, []);
 
-  const communityLinks = [
-    {
-      icon: <Github className="w-6 h-6" />,
-      title: 'GitHub',
-      description: 'Contribute to our open-source projects',
-      link: '#',
-      color: 'from-gray-600 to-gray-800',
-    },
-    {
-      icon: <MessageCircle className="w-6 h-6" />,
-      title: 'Discord',
-      description: 'Join our developer community',
-      link: '#',
-      color: 'from-indigo-500 to-purple-600',
-    },
-    {
-      icon: <Twitter className="w-6 h-6" />,
-      title: 'Twitter',
-      description: 'Follow for updates and news',
-      link: '#',
-      color: 'from-blue-400 to-blue-600',
-    },
-  ];
-
   const stats = [
     {
       icon: <Users className="w-8 h-8" />,
       value: '10K+',
-      label: 'Active Developers',
+      label: 'Active Students',
     },
     {
       icon: <MessageSquare className="w-8 h-8" />,
@@ -108,24 +75,22 @@ const CTA: React.FC = () => {
   ];
 
   return (
-    <section id="cta" ref={ctaRef} className="w-full max-w-7xl mx-auto px-4 py-20">
-      {/* Main CTA */}
-      <div className="text-center mb-20">
-        <div className="cta-content">
-          <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent">
-            Ready to Join centrAL?
+    <section id="cta" ref={ctaRef} className="w-full max-w-7xl mx-auto px-4 py-10">
+      <div className="mb-16 text-center">
+        <div className="feature-header">
+          <h2 className="text-7xl md:text-8xl font-serif pb-1 mb-6 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
+            <span className="italic">Ready to Join centrAL?</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8">
-            Join thousands of developers already using centrAL to build, collaborate, and grow their
-            careers.
+          <p className="text-xl text-muted-foreground leading-relaxed">
+            Placeholder
           </p>
+        </div>
 
-          <div className="w-full flex ">
-            <WrapButton className="mt-10" href="/auth/sign-up">
-              <Globe className="animate-spin " />
-              Get started
-            </WrapButton>
-          </div>
+        <div className="w-full flex justify-center">
+          <WrapButton className="mt-10" href="/auth/sign-up">
+            <Globe className="animate-spin" />
+            Get started
+          </WrapButton>
         </div>
       </div>
 
@@ -144,37 +109,11 @@ const CTA: React.FC = () => {
           </div>
         ))}
       </div>
-
-      {/* Community Links */}
-      <div className="cta-cards grid grid-cols-1 md:grid-cols-3 gap-6">
-        {communityLinks.map((link, index) => (
-          <a
-            key={index}
-            href={link.link}
-            className="cta-card relative p-8 rounded-2xl border bg-card transition-all duration-500 cursor-pointer overflow-hidden"
-          >
-            <div className="relative z-10 text-center">
-              <div
-                className={`w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-br ${link.color} flex items-center justify-center text-white shadow-lg`}
-              >
-                {link.icon}
-              </div>
-
-              <h3 className="text-xl font-semibold mb-3">{link.title}</h3>
-
-              <p className="text-muted-foreground">{link.description}</p>
-
-              <div className="mt-4 flex items-center justify-center text-primary">
-                <span className="text-sm font-medium mr-2">Learn more</span>
-                <ArrowRight className="w-4 h-4" />
-              </div>
-            </div>
-          </a>
-        ))}
+      <div className="cta-cards grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* <FlipLink href="https://x.com/guri_who">Twitter</FlipLink>
+        <FlipLink href="https://github.com">GitHub</FlipLink>
+        <FlipLink href="https://behance.net">Behance</FlipLink> */}
       </div>
-      <FlipLink href="https://x.com/guri_who">Behance</FlipLink>
-      <FlipLink href="https://x.com/guri_who">Behance</FlipLink>
-      <FlipLink href="https://x.com/guri_who">Behance</FlipLink>
     </section>
   );
 };
