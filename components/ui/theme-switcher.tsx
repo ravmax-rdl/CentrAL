@@ -42,10 +42,15 @@ const ThemeSwitcher = () => {
   const currentTheme = themes.find((t) => t.name === theme) || themes[0];
   const CurrentIcon = currentTheme.icon;
 
-  const cycleTheme = () => {
+  const getNextTheme = () => {
     const currentIndex = themes.findIndex((t) => t.name === theme);
     const nextIndex = (currentIndex + 1) % themes.length;
-    setTheme(themes[nextIndex].name);
+    return themes[nextIndex];
+  };
+
+  const cycleTheme = () => {
+    const nextTheme = getNextTheme();
+    setTheme(nextTheme.name);
   };
 
   return (
@@ -55,7 +60,7 @@ const ThemeSwitcher = () => {
         size="sm"
         onClick={cycleTheme}
         className="relative h-9 w-9 rounded-full p-0 hover:bg-accent/80 transition-all duration-300 hover:scale-110 border border-border/50 hover:border-border"
-        aria-label={`Current: ${currentTheme.label}. Click to switch to ${themes[(themes.findIndex((t) => t.name === theme) + 1) % themes.length].label}`}
+        aria-label={`Current: ${currentTheme.label}. Click to switch to ${getNextTheme().label}`}
       >
         <AnimatePresence mode="wait">
           <motion.div
