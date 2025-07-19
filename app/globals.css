@@ -93,8 +93,8 @@
     @apply bg-background text-foreground;
     font-family: var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif;
     transition:
-      background-color 0.1s ease-in-out,
-      color 0.1s ease-in-out;
+      background-color 0.05s ease-in-out,
+      color 0.05s ease-in-out;
   }
 
   /* Smooth transitions for theme switching */
@@ -102,11 +102,11 @@
   *::before,
   *::after {
     transition:
-      background-color 0.1s ease-in-out,
-      border-color 0.1s ease-in-out,
-      color 0.1s ease-in-out,
-      fill 0.1s ease-in-out,
-      stroke 0.1s ease-in-out;
+      background-color 0.05s ease-in-out,
+      border-color 0.05s ease-in-out,
+      color 0.05s ease-in-out,
+      fill 0.05s ease-in-out,
+      stroke 0.05s ease-in-out;
   }
 
   /* Prevent transition on page load */
@@ -237,9 +237,9 @@ html {
 /* Ensure smooth transitions for theme switching */
 * {
   transition:
-    background-color 0.3s ease,
-    color 0.3s ease,
-    border-color 0.3s ease;
+    background-color 0.1s ease,
+    color 0.1s ease,
+    border-color 0.1s ease;
 }
 
 /* Ensure images are responsive */

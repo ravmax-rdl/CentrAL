@@ -59,7 +59,7 @@ const ThemeSwitcher = () => {
         variant="ghost"
         size="sm"
         onClick={cycleTheme}
-        className="relative h-9 w-9 rounded-full p-0 hover:bg-accent/80 transition-all duration-300 hover:scale-110 border border-border/50 hover:border-border"
+        className="relative h-9 w-9 rounded-full p-0 hover:bg-accent/80 transition-all duration-150 hover:scale-110 border border-border/50 hover:border-border"
         aria-label={`Current: ${currentTheme.label}. Click to switch to ${getNextTheme().label}`}
       >
         <AnimatePresence mode="wait">
@@ -69,17 +69,17 @@ const ThemeSwitcher = () => {
             animate={{ rotate: 0, opacity: 1, scale: 1 }}
             exit={{ rotate: 90, opacity: 0, scale: 0.6 }}
             transition={{
-              duration: 0.4,
+              duration: 0.2,
               ease: [0.4, 0, 0.2, 1],
               type: 'spring',
-              stiffness: 300,
-              damping: 30,
+              stiffness: 400,
+              damping: 25,
             }}
             className="absolute inset-0 flex items-center justify-center"
           >
             <CurrentIcon
               size={16}
-              className={`${currentTheme.color} transition-colors duration-200`}
+              className={`${currentTheme.color} transition-colors duration-150`}
             />
           </motion.div>
         </AnimatePresence>
@@ -97,14 +97,14 @@ const ThemeSwitcher = () => {
                 : 'rgba(var(--border-animation-light), var(--border-animation-opacity))',
           }}
           transition={{
-            duration: 0.6,
+            duration: 0.3,
             ease: 'easeOut',
           }}
         />
       </Button>
 
       {/* Enhanced tooltip */}
-      <div className="absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none transform group-hover:-translate-y-1">
+      <div className="absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none transform group-hover:-translate-y-1">
         <div className="bg-popover/95 backdrop-blur-sm text-popover-foreground px-3 py-2 rounded-md text-xs whitespace-nowrap border shadow-lg">
           <div className="flex items-center gap-2">
             <CurrentIcon size={12} className={currentTheme.color} />
