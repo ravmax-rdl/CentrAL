@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import MagicBento from './ui/Bento';
+import { FeaturesGrid } from './ui/features-grid';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -53,28 +53,21 @@ const Features: React.FC = () => {
   }, []);
 
   return (
-    <section id="features" ref={featuresRef} className="w-full max-w-7xl mx-auto px-4 py-20">
-      <div className="text-center mb-16">
+    <section id="features" ref={featuresRef} className="w-full max-w-7xl mx-auto px-4 py-10">
+      <div className="mb-16">
         <div className="feature-header">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
-            Powerful Features
+          <h2 className="text-7xl md:text-8xl font-serif mb-6 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent text-left">
+            <p className="inline italic">Impactful</p> Features
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Everything you need to build, collaborate, and grow as a developer
+          <p className="text-xl text-muted-foreground leading-relaxed text-left">
+            Everything you need to learn, grow, and collaborate as a student.
           </p>
         </div>
       </div>
 
-      <MagicBento
-        textAutoHide={true}
-        enableSpotlight={true}
-        enableBorderGlow={true}
-        enableTilt={true}
-        enableMagnetism={true}
-        clickEffect={true}
-        spotlightRadius={300}
-        glowColor="32, 200, 255"
-      />
+      <div className="w-full flex justify-center">
+        <FeaturesGrid />
+      </div>
     </section>
   );
 };
