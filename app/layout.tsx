@@ -9,10 +9,63 @@ const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : 'http://localhost:3000';
 
+// Detect if this is a preview deployment
+const isPreview = process.env.VERCEL_ENV === 'preview';
+
 export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
   title: 'centrAL',
-  description: 'centrAL is collaborative learning platform for Sri Lankan students.',
+  description: 'centrAL is collaborative learning platform for Sri Lankan G.C.E A/L students.',
+  keywords: [
+    'education',
+    'learning',
+    'sri lanka',
+    'students',
+    'a/l',
+    'advanced level',
+    'resources',
+    'collaboration',
+    'community',
+    'forum',
+    'study',
+    'notes',
+    'past papers',
+    'quizzes',
+    'exam',
+    'revision',
+  ],
+  authors: [{ name: 'centrAL Team' }],
+  creator: 'centrAL',
+  publisher: 'centrAL',
+  openGraph: {
+    title: isPreview ? 'centrAL (Preview)' : 'centrAL',
+    description: 'centrAL is collaborative learning platform for Sri Lankan G.C.E A/L students.',
+    url: defaultUrl,
+    siteName: 'centrAL',
+    images: [
+      {
+        url: '/images/banner.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'centrAL - Where ambition meets access',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  robots: {
+    index: !isPreview, // Don't index preview deployments
+    follow: !isPreview,
+    nocache: isPreview,
+    googleBot: {
+      index: !isPreview,
+      follow: !isPreview,
+      noimageindex: isPreview,
+    },
+  },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+  },
 };
 
 const inter = Inter({
