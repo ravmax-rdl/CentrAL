@@ -27,12 +27,12 @@ export default function Home() {
       </div>
 
       {/* Fixed Navigation */}
-      <div className="fixed top-5 left-0 right-0 z-30 flex justify-center pointer-events-none">
+      <div className="fixed top-5 left-0 right-0 z-40 flex justify-center pointer-events-none">
         <div className="pointer-events-auto">
           <UserPanel />
         </div>
       </div>
-      <div className="fixed top-20 left-0 right-0 z-30 flex justify-center pointer-events-none">
+      <div className="fixed top-20 left-0 right-0 z-40 flex justify-center pointer-events-none">
         <div className="pointer-events-auto">
           <NavBar items={navItems} />
         </div>

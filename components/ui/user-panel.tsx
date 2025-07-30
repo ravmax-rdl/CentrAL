@@ -11,7 +11,7 @@ export function UserPanel({ className }: UserPanelProps) {
   return (
     <div
       className={cn(
-        'fixed top-6 right-4 sm:right-6 z-50',
+        'fixed top-6 right-4 sm:right-6 z-40',
         'w-fit max-w-[calc(100vw-2rem)]', // Responsive width with padding
         className
       )}
