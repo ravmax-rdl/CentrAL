@@ -147,7 +147,7 @@ export default function Footer() {
   return (
     <footer
       ref={footerRef}
-      className="relative w-full bg-gradient-to-b from-background to-muted/20 -mt-1 z-30"
+      className="relative w-full bg-gradient-to-b from-background to-muted/20 -mt-16 z-30"
     >
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
@@ -162,9 +162,9 @@ export default function Footer() {
         <ArrowUp size={20} />
       </button>
 
-      <div className="max-w-7xl mx-auto px-6 py-16">
+      <div className="max-w-7xl mx-auto px-6 py-16 ">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12 ">
           {/* Brand Section */}
           <div ref={brandRef} className="md:col-span-6">
             <div className="space-y-6">
