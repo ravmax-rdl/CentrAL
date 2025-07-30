@@ -72,15 +72,19 @@ const Contributors: React.FC = () => {
   ];
 
   return (
-      <section id="contributors" ref={contributorsRef} className="w-full max-w-7xl mx-auto px-4 py-10">
+    <section
+      id="contributors"
+      ref={contributorsRef}
+      className="w-full max-w-full mx-auto px-10 md:px-60 py-10"
+    >
       <div className="mb-16">
         <div className="feature-header">
-          <h2 className="text-7xl md:text-8xl font-serif mb-6 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent text-left">
+          <h2 className="text-7xl md:text-9xl font-serif my-6 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent text-left">
             Meet <p className="inline italic">the team</p>
           </h2>
           <p className="text-xl text-muted-foreground leading-relaxed text-left">
-          The passionate individuals behind centrAL, working to create the best developer
-          experience.
+            The passionate individuals behind centrAL, working to create the best developer
+            experience.
           </p>
         </div>
       </div>
@@ -103,7 +107,6 @@ const Contributors: React.FC = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-
               </div>
 
               <h3 className="text-xl font-semibold mb-2">{contributor.name}</h3>

@@ -53,10 +53,10 @@ const Features: React.FC = () => {
   }, []);
 
   return (
-    <section id="features" ref={featuresRef} className="w-full max-w-7xl mx-auto px-4 py-10">
+    <section id="features" ref={featuresRef} className="w-full max-w-full mx-auto px-10 md:px-60 py-10">
       <div className="mb-16">
         <div className="feature-header">
-          <h2 className="text-7xl md:text-8xl font-serif mb-6 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent text-left">
+          <h2 className="text-7xl md:text-9xl font-serif my-6 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent text-left">
             <p className="inline italic">Impactful</p> Features
           </h2>
           <p className="text-xl text-muted-foreground leading-relaxed text-left">
