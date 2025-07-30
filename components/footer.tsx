@@ -190,28 +190,24 @@ export default function Footer() {
                 href="#contributors"
                 className="footer-link group flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-300"
               >
-                <span className="w-1 h-1 rounded-full bg-primary/60 group-hover:bg-primary transition-colors"></span>
                 Our Team
               </a>
               <a
                 href="/auth/login"
                 className="footer-link group flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-300"
               >
-                <span className="w-1 h-1 rounded-full bg-primary/60 group-hover:bg-primary transition-colors"></span>
                 Login
               </a>
               <a
                 href="/auth/sign-up"
                 className="footer-link group flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-300"
               >
-                <span className="w-1 h-1 rounded-full bg-primary/60 group-hover:bg-primary transition-colors"></span>
                 Sign Up
               </a>
               <a
                 href="mailto:contact@central.app"
                 className="footer-link group flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-300"
               >
-                <span className="w-1 h-1 rounded-full bg-primary/60 group-hover:bg-primary transition-colors"></span>
                 Contact
               </a>
             </nav>
