@@ -54,18 +54,21 @@ export function NavBar({ items, className }: NavBarProps) {
     setContainerWidth(window.innerWidth);
   }, []);
 
-  // Container query implementation using ResizeObserver
+  // Monitor viewport changes using window resize event
   useEffect(() => {
-    const resizeObserver = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        setContainerWidth(entry.contentRect.width);
-      }
-    });
+    const handleResize = () => {
+      setContainerWidth(window.innerWidth);
+    };
 
-    resizeObserver.observe(document.documentElement);
+    // Add event listener for window resize
+    window.addEventListener('resize', handleResize);
+
+    // Set initial container width
+    handleResize();
 
     return () => {
-      resizeObserver.disconnect();
+      // Clean up event listener on unmount
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
