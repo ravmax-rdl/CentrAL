@@ -9,6 +9,7 @@ import SubjectList from '@/components/subject-list';
 import { LayeredScrollContent } from '@/components/ui/layered-scroll';
 import ScrollIndicator from '@/components/ui/scroll-indicator';
 import Footer from '@/components/footer';
+import Subjects from '@/components/ui/subject-card2';
 
 export default function Home() {
   const navItems = [

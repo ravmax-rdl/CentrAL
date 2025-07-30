@@ -14,31 +14,36 @@ const SubjectList: React.FC = () => {
   useEffect(() => {
     if (typeof window !== 'undefined' && listRef.current) {
       const ctx = gsap.context(() => {
-        // Create scroll animations - content is visible by default
+        // Animate subject cards with stagger effect
         gsap.fromTo(
           '.project-item',
-          { x: -100, opacity: 0 },
+          { y: 100, opacity: 0, scale: 0.95 },
           {
-            x: 0,
+            y: 0,
             opacity: 1,
-            duration: 0.8,
-            stagger: 0.2,
+            scale: 1,
+            duration: 1,
+            stagger: 0.15,
+            ease: 'power3.out',
             scrollTrigger: {
               trigger: listRef.current,
-              start: 'top 80%',
+              start: 'top 85%',
               end: 'bottom 20%',
               toggleActions: 'play none none reverse',
             },
           }
         );
 
+        // Animate header content
         gsap.fromTo(
-          '.list-header',
-          { y: 50, opacity: 0 },
+          '.list-header > *',
+          { y: 80, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 1,
+            duration: 1.2,
+            stagger: 0.1,
+            ease: 'power3.out',
             scrollTrigger: {
               trigger: listRef.current,
               start: 'top 80%',
@@ -46,6 +51,16 @@ const SubjectList: React.FC = () => {
             },
           }
         );
+
+        // Add floating animation to subject icons
+        gsap.to('.project-item img', {
+          y: -10,
+          duration: 2,
+          ease: 'power2.inOut',
+          yoyo: true,
+          repeat: -1,
+          stagger: 0.2,
+        });
       }, listRef);
 
       return () => ctx.revert();
@@ -56,10 +71,11 @@ const SubjectList: React.FC = () => {
     {
       title: 'Mathematics',
       description:
-        'RESTful API for seamless integration with your existing development tools and workflows.',
+        'Master the fundamental language of science through calculus, algebra, geometry, and statistics. Build problem-solving skills that form the foundation of all STEM fields.',
       status: 'Active',
       students: 15,
       languages: ['Calculus', 'Algebra', 'Geometry', 'Statistics'],
+      image: '/images/subjects/mathematics.svg',
       links: {
         github: '#',
         docs: '#',
@@ -69,10 +85,11 @@ const SubjectList: React.FC = () => {
     {
       title: 'Physics',
       description:
-        'Command-line interface for managing projects, deployments, and community interactions.',
+        'Explore the fundamental laws that govern our universe, from quantum mechanics to thermodynamics. Develop analytical thinking through hands-on experiments.',
       status: 'Beta',
       students: 8,
       languages: ['Mechanics', 'Thermodynamics', 'Electromagnetism', 'Quantum'],
+      image: '/images/subjects/physics.svg',
       links: {
         github: '#',
         docs: '#',
@@ -82,10 +99,11 @@ const SubjectList: React.FC = () => {
     {
       title: 'Chemistry',
       description:
-        'Native mobile application for iOS and Android with real-time notifications and chat.',
+        'Discover the molecular world through organic, inorganic, and physical chemistry. Learn how atoms and molecules interact to create everything around us.',
       status: 'Development',
       students: 5,
       languages: ['Organic', 'Inorganic', 'Physical', 'Analytical'],
+      image: '/images/subjects/chemistry.svg',
       links: {
         github: '#',
         docs: '#',
@@ -94,10 +112,12 @@ const SubjectList: React.FC = () => {
     },
     {
       title: 'Biology',
-      description: 'Browser extensions and VS Code plugins for enhanced development productivity.',
+      description:
+        'Study life in all its forms, from molecular biology to ecology. Understand evolution, genetics, and the interconnected web of living systems.',
       status: 'Planning',
       students: 3,
       languages: ['Molecular', 'Ecology', 'Evolution', 'Genetics'],
+      image: '/images/subjects/biology.svg',
       links: {
         github: '#',
         docs: '#',
@@ -107,7 +127,7 @@ const SubjectList: React.FC = () => {
   ];
 
   return (
-    <section id="subjects" ref={listRef} className="w-full max-w-7xl mx-auto px-4 py-10">
+    <section id="subjects" ref={listRef} className="relative w-full max-w-7xl mx-auto px-4 py-16">
       <div className="mb-16">
         <div className="feature-header">
           <h2 className="text-7xl md:text-8xl font-serif mb-6 pb-1 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent text-center">
@@ -117,7 +137,7 @@ const SubjectList: React.FC = () => {
         </div>
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-8">
         {projects.map((project, index) => (
           <SubjectCard
             key={index}
@@ -126,6 +146,7 @@ const SubjectList: React.FC = () => {
             status={project.status}
             students={project.students}
             languages={project.languages}
+            image={project.image}
             links={project.links}
           />
         ))}

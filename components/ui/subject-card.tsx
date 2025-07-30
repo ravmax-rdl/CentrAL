@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
-import { Users, ArrowRight, ExternalLink } from 'lucide-react';
+import { Users, ArrowRight, ExternalLink, BookOpen, Globe } from 'lucide-react';
+import Image from 'next/image';
 
 interface SubjectCardProps {
   title: string;
@@ -8,6 +9,7 @@ interface SubjectCardProps {
   status: string;
   students: number;
   languages: string[];
+  image: string;
   links: {
     github: string;
     docs: string;
@@ -21,6 +23,7 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
   status,
   students,
   languages,
+  image,
   links,
 }) => {
   const getStatusColor = (status: string) => {
@@ -39,56 +42,103 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
   };
 
   return (
-    <div className="project-item relative p-6 rounded-xl border bg-card transition-all duration-300 hover:shadow-md">
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex-1">
-          <div className="flex items-center gap-3 mb-3">
-            <h3 className="text-xl font-semibold">{title}</h3>
-            <div
-              className={`px-2 py-1 rounded-full text-xs font-medium text-white ${getStatusColor(status)}`}
-            >
-              {status}
+    <div className="project-item group relative overflow-hidden rounded-2xl border bg-gradient-to-br from-card/50 to-card backdrop-blur-sm transition-all duration-500 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1">
+      {/* Background gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+      <div className="relative p-8">
+        {/* Header with image and title */}
+        <div className="flex items-start gap-6 mb-6">
+          <div className="relative w-20 h-20 rounded-2xl overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10 p-1 group-hover:scale-110 transition-transform duration-300">
+            <div className="w-full h-full rounded-xl overflow-hidden">
+              <Image
+                src={image}
+                alt={`${title} icon`}
+                width={80}
+                height={80}
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
 
-          <p className="text-muted-foreground mb-4 text-sm">{description}</p>
+          <div className="flex-1">
+            <div className="flex items-center gap-3 mb-3">
+              <h3 className="text-2xl font-bold text-foreground">{title}</h3>
+              <div
+                className={`px-3 py-1.5 rounded-full text-xs font-semibold text-white ${getStatusColor(status)} shadow-sm`}
+              >
+                {status}
+              </div>
+            </div>
 
-          {/* Languages */}
-          <div className="flex flex-wrap gap-2 mb-4">
+            <p className="text-muted-foreground leading-relaxed mb-6 group-hover:text-foreground/80 transition-colors duration-300">
+              {description}
+            </p>
+          </div>
+        </div>
+
+        {/* Topics/Languages */}
+        <div className="mb-6">
+          <h4 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
+            <BookOpen className="w-4 h-4" />
+            Topics Covered
+          </h4>
+          <div className="flex flex-wrap gap-2">
             {languages.map((language, index) => (
               <span
                 key={index}
-                className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-md font-medium"
+                className="px-3 py-1.5 bg-gradient-to-r from-primary/10 to-secondary/10 text-foreground text-sm rounded-lg font-medium border border-primary/20 hover:border-primary/40 transition-colors duration-200"
               >
                 {language}
               </span>
             ))}
           </div>
+        </div>
 
-          {/* Students count */}
-          <div className="flex items-center gap-1 text-sm text-muted-foreground">
-            <Users className="w-4 h-4" />
-            <span>{students}</span>
+        {/* Language Availability */}
+        <div className="mb-6">
+          <h4 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
+            <Globe className="w-4 h-4" />
+            Available Languages
+          </h4>
+          <div className="flex gap-2">
+            <span className="px-3 py-1.5 bg-gradient-to-r from-primary/10 to-secondary/10 text-foreground text-sm rounded-lg font-medium border border-primary/20 hover:border-primary/40 transition-colors duration-200">
+              English
+            </span>
+            <span className="px-3 py-1.5 bg-gradient-to-r from-primary/10 to-secondary/10 text-foreground text-sm rounded-lg font-medium border border-primary/20 hover:border-primary/40 transition-colors duration-200">
+              සිංහල
+            </span>
+            <span className="px-3 py-1.5 bg-gradient-to-r from-primary/10 to-secondary/10 text-foreground text-sm rounded-lg font-medium border border-primary/20 hover:border-primary/40 transition-colors duration-200">
+              தமிழ்
+            </span>
           </div>
         </div>
 
-        {/* Action buttons */}
-        <div className="flex items-center gap-3 mt-4 lg:mt-0 lg:ml-6">
-          <a
-            href={links.docs}
-            className="flex items-center gap-2 px-3 py-2 rounded-lg border hover:bg-accent transition-colors duration-200"
-          >
-            <ExternalLink className="w-4 h-4" />
-            <span className="text-sm">Contribute</span>
-          </a>
+        {/* Stats and Actions */}
+        <div className="flex items-center justify-between pt-4 border-t border-border/50">
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <Users className="w-5 h-5" />
+            <span className="font-semibold">{students}</span>
+            <span className="text-sm">students enrolled</span>
+          </div>
 
-          <a
-            href={links.demo}
-            className="flex items-center gap-2 px-3 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200"
-          >
-            <span className="text-sm">View</span>
-            <ArrowRight className="w-4 h-4" />
-          </a>
+          <div className="flex items-center gap-3">
+            <a
+              href={links.docs}
+              className="flex items-center gap-2 px-4 py-2 rounded-xl border border-border hover:border-primary/50 hover:bg-primary/5 transition-all duration-200 group/btn"
+            >
+              <ExternalLink className="w-4 h-4 group-hover/btn:scale-110 transition-transform duration-200" />
+              <span className="text-sm font-medium">Contribute</span>
+            </a>
+
+            <a
+              href={links.demo}
+              className="flex items-center gap-2 px-6 py-2 rounded-xl bg-primary text-primary-foreground transition-all duration-200 group/btn"
+            >
+              <span className="text-sm font-semibold">Study Now</span>
+              <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-200" />
+            </a>
+          </div>
         </div>
       </div>
     </div>
