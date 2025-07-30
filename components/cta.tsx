@@ -27,8 +27,8 @@ const CTA: React.FC = () => {
             stagger: 0.2,
             scrollTrigger: {
               trigger: ctaRef.current,
-              start: 'top 80%',
-              end: 'bottom 20%',
+              start: 'top 75%',
+              end: 'bottom 25%',
               toggleActions: 'play none none reverse',
             },
           }
@@ -44,8 +44,8 @@ const CTA: React.FC = () => {
             stagger: 0.1,
             scrollTrigger: {
               trigger: '.cta-cards',
-              start: 'top 80%',
-              end: 'bottom 20%',
+              start: 'top 75%',
+              end: 'bottom 25%',
               toggleActions: 'play none none reverse',
             },
           }
@@ -81,9 +81,7 @@ const CTA: React.FC = () => {
           <h2 className="text-7xl md:text-8xl font-serif pb-1 mb-6 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
             <span className="italic">Ready to Join centrAL?</span>
           </h2>
-          <p className="text-xl text-muted-foreground leading-relaxed">
-            Placeholder
-          </p>
+          <p className="text-xl text-muted-foreground leading-relaxed">Placeholder</p>
         </div>
 
         <div className="w-full flex justify-center">

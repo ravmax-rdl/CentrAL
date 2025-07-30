@@ -47,8 +47,8 @@ const About: React.FC = () => {
             ease: 'power2.out',
             scrollTrigger: {
               trigger: aboutRef.current,
-              start: 'top 90%',
-              end: 'top 60%',
+              start: 'top 75%',
+              end: 'top 50%',
               scrub: 1,
               toggleActions: 'play none none reverse',
             },
@@ -121,7 +121,7 @@ const About: React.FC = () => {
   }, []);
 
   return (
-    <section id="about" ref={aboutRef} className="relative w-full mx-auto py-20 px-4 ">
+    <section id="about" ref={aboutRef} className="relative w-full mx-auto pt-10 pb-20 px-4 ">
       {/* Large Animated Text Paragraph */}
       <div className="about-text pt-10">
         <motion.div
@@ -129,29 +129,29 @@ const About: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
           viewport={{ once: true, margin: '-100px' }}
-          className="max-w-7xl mx-auto text-center px-4"
+          className="mx-auto text-center px-4 max-w-[80vw]"
         >
           <motion.div
-            className="text-2xl sm:text-5xl lg:text-6xl leading-loose text-muted-foreground mb-8"
+            className="text-2xl sm:text-5xl lg:text-6xl leading-relaxed sm:leading-tight lg:leading-tight text-muted-foreground mb-8"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
             viewport={{ once: true }}
           >
             <span className="text-primary font-semibold">centrAL</span> is a student-powered
-            learning platform revolutionizing A/L education in Sri Lanka. By crowdsourcing
+            learning platform revolutionizing A/L education in Sri Lanka. By crowdsourcing{' '}
             <LayoutGroup>
-              <motion.div className="flex whitespace-pre justify-center" layout>
+              <motion.div className="inline-flex items-center whitespace-nowrap" layout>
                 <motion.span
-                  className="pt-0.5 sm:pt-1 md:pt-2 flex justify-center"
+                  className="inline-block"
                   layout
                   transition={{ type: 'spring', damping: 30, stiffness: 400 }}
                 >
                   high-quality{' '}
                 </motion.span>
                 <TextRotate
-                  texts={['notes', 'past papers', 'revision tools']}
-                  mainClassName="text-white px-2 sm:px-2 md:px-3 bg-[#43afbe] overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
+                  texts={['study notes', 'past papers', 'revision tools']}
+                  mainClassName="text-white px-1.5 sm:px-2 md:px-3 bg-[#43afbe] overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg inline-block whitespace-nowrap"
                   staggerFrom={'last'}
                   initial={{ y: '100%' }}
                   animate={{ y: 0 }}
@@ -162,7 +162,7 @@ const About: React.FC = () => {
                   rotationInterval={2000}
                 />
               </motion.div>
-            </LayoutGroup>
+            </LayoutGroup>{' '}
             centrAL makes top-tier resources accessible to{' '}
             <span className="text-primary font-semibold">everyone</span>. It’s more than a
             repository; it’s a movement for equitable, collaborative learning.

@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Star, Users, Download, ArrowRight, ExternalLink } from 'lucide-react';
+import SubjectCard from './ui/subject-card';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -14,38 +14,53 @@ const SubjectList: React.FC = () => {
   useEffect(() => {
     if (typeof window !== 'undefined' && listRef.current) {
       const ctx = gsap.context(() => {
-        // Create scroll animations - content is visible by default
+        // Animate subject cards with stagger effect
         gsap.fromTo(
           '.project-item',
-          { x: -100, opacity: 0 },
+          { y: 100, opacity: 0, scale: 0.95 },
           {
-            x: 0,
+            y: 0,
             opacity: 1,
-            duration: 0.8,
-            stagger: 0.2,
+            scale: 1,
+            duration: 1,
+            stagger: 0.15,
+            ease: 'power3.out',
             scrollTrigger: {
               trigger: listRef.current,
-              start: 'top 80%',
-              end: 'bottom 20%',
+              start: 'top 75%',
+              end: 'bottom 25%',
               toggleActions: 'play none none reverse',
             },
           }
         );
 
+        // Animate header content
         gsap.fromTo(
-          '.list-header',
-          { y: 50, opacity: 0 },
+          '.list-header > *',
+          { y: 80, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 1,
+            duration: 1.2,
+            stagger: 0.1,
+            ease: 'power3.out',
             scrollTrigger: {
               trigger: listRef.current,
-              start: 'top 80%',
+              start: 'top 75%',
               toggleActions: 'play none none reverse',
             },
           }
         );
+
+        // Add floating animation to subject icons
+        gsap.to('.project-item img', {
+          y: -10,
+          duration: 2,
+          ease: 'power2.inOut',
+          yoyo: true,
+          repeat: -1,
+          stagger: 0.2,
+        });
       }, listRef);
 
       return () => ctx.revert();
@@ -56,185 +71,84 @@ const SubjectList: React.FC = () => {
     {
       title: 'Mathematics',
       description:
-        'RESTful API for seamless integration with your existing development tools and workflows.',
+        'Master the fundamental language of science through calculus, algebra, geometry, and statistics. Build problem-solving skills that form the foundation of all STEM fields.',
       status: 'Active',
-      stats: {
-        stars: 1200,
-        downloads: '50K+',
-        contributors: 15,
-      },
-      tags: ['API', 'REST', 'Node.js', 'TypeScript'],
+      students: 15,
+      languages: ['Calculus', 'Algebra', 'Geometry', 'Statistics'],
+      image: '/images/subjects/mathematics.svg',
       links: {
         github: '#',
         docs: '#',
         demo: '#',
       },
-      progress: 95,
     },
     {
       title: 'Physics',
       description:
-        'Command-line interface for managing projects, deployments, and community interactions.',
+        'Explore the fundamental laws that govern our universe, from quantum mechanics to thermodynamics. Develop analytical thinking through hands-on experiments.',
       status: 'Beta',
-      stats: {
-        stars: 800,
-        downloads: '25K+',
-        contributors: 8,
-      },
-      tags: ['CLI', 'Tools', 'Node.js', 'Commander'],
+      students: 8,
+      languages: ['Mechanics', 'Thermodynamics', 'Electromagnetism', 'Quantum'],
+      image: '/images/subjects/physics.svg',
       links: {
         github: '#',
         docs: '#',
         demo: '#',
       },
-      progress: 80,
     },
     {
       title: 'Chemistry',
       description:
-        'Native mobile application for iOS and Android with real-time notifications and chat.',
+        'Discover the molecular world through organic, inorganic, and physical chemistry. Learn how atoms and molecules interact to create everything around us.',
       status: 'Development',
-      stats: {
-        stars: 300,
-        downloads: '5K+',
-        contributors: 5,
-      },
-      tags: ['Mobile', 'React Native', 'iOS', 'Android'],
+      students: 5,
+      languages: ['Organic', 'Inorganic', 'Physical', 'Analytical'],
+      image: '/images/subjects/chemistry.svg',
       links: {
         github: '#',
         docs: '#',
         demo: '#',
       },
-      progress: 45,
     },
     {
       title: 'Biology',
-      description: 'Browser extensions and VS Code plugins for enhanced development productivity.',
+      description:
+        'Study life in all its forms, from molecular biology to ecology. Understand evolution, genetics, and the interconnected web of living systems.',
       status: 'Planning',
-      stats: {
-        stars: 150,
-        downloads: '2K+',
-        contributors: 3,
-      },
-      tags: ['Extensions', 'Browser', 'VS Code', 'Productivity'],
+      students: 3,
+      languages: ['Molecular', 'Ecology', 'Evolution', 'Genetics'],
+      image: '/images/subjects/biology.svg',
       links: {
         github: '#',
         docs: '#',
         demo: '#',
       },
-      progress: 20,
     },
   ];
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'Active':
-        return 'bg-green-500';
-      case 'Beta':
-        return 'bg-blue-500';
-      case 'Development':
-        return 'bg-yellow-500';
-      case 'Planning':
-        return 'bg-gray-500';
-      default:
-        return 'bg-gray-500';
-    }
-  };
-
   return (
-    <section id="subjects" ref={listRef} className="w-full max-w-7xl mx-auto px-4 py-10">
+    <section id="subjects" ref={listRef} className="w-full max-w-full mx-auto px-10 md:px-60 py-10">
       <div className="mb-16">
         <div className="feature-header">
-          <h2 className="text-7xl md:text-8xl font-serif mb-6 pb-1 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent text-center">
+          <h2 className="text-7xl md:text-9xl font-serif my-6 pb-1 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent text-center">
             <p className="inline italic">Subjects </p> offered
           </h2>
-          <p className="text-xl text-muted-foreground leading-relaxed text-center">
-            Placeholder
-          </p>
+          <p className="text-xl text-muted-foreground leading-relaxed text-center">Placeholder</p>
         </div>
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-8">
         {projects.map((project, index) => (
-          <div
+          <SubjectCard
             key={index}
-            className="project-item relative p-8 rounded-2xl border bg-card transition-all duration-500 "
-          >
-            <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between">
-              <div className="flex-1">
-                <div className="flex items-center gap-4 mb-4">
-                  <h3 className="text-2xl font-semibold">{project.title}</h3>
-
-                  {/* Status badge */}
-                  <div
-                    className={`px-3 py-1 rounded-full text-xs font-medium text-white ${getStatusColor(project.status)}`}
-                  >
-                    {project.status}
-                  </div>
-
-                  {/* Progress bar */}
-                  <div className="hidden lg:flex items-center gap-2 ml-auto">
-                    <div className="w-20 h-2 bg-muted rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-primary transition-all duration-1000"
-                        style={{ width: `${project.progress}%` }}
-                      />
-                    </div>
-                    <span className="text-sm text-muted-foreground">{project.progress}%</span>
-                  </div>
-                </div>
-
-                <p className="text-muted-foreground mb-4">{project.description}</p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag, tagIndex) => (
-                    <span
-                      key={tagIndex}
-                      className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-md"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Stats */}
-                <div className="flex items-center gap-6 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-1">
-                    <Star className="w-4 h-4" />
-                    <span>{project.stats.stars}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Download className="w-4 h-4" />
-                    <span>{project.stats.downloads}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Users className="w-4 h-4" />
-                    <span>{project.stats.contributors}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Action buttons */}
-              <div className="flex items-center gap-3 mt-6 lg:mt-0 lg:ml-6">
-                <a
-                  href={project.links.docs}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg border hover:bg-accent transition-colors duration-200"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  <span className="text-sm">Contribute</span>
-                </a>
-
-                <a
-                  href={project.links.demo}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200"
-                >
-                  <span className="text-sm">View</span>
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
-          </div>
+            title={project.title}
+            description={project.description}
+            status={project.status}
+            students={project.students}
+            languages={project.languages}
+            image={project.image}
+            links={project.links}
+          />
         ))}
       </div>
     </section>

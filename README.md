@@ -7,7 +7,7 @@
 </p>
 
 ## Overview
-centrAL aims to be an educational resource sharing hub.
+centrAL is collaborative learning platform for Sri Lankan A/L students.
 
 ## Project Status
 🚧 **Work in Progress** 🚧

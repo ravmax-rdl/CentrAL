@@ -39,9 +39,9 @@ export const LayeredScrollContent: React.FC<LayeredScrollProps> = ({
             ease: 'power3.out',
             scrollTrigger: {
               trigger: contentRef.current,
-              start: 'top 95%',
-              end: 'top 20%',
-              scrub: 1.5,
+              start: 'top 85%',
+              end: 'top 30%',
+              scrub: 1.2,
               toggleActions: 'play none none reverse',
             },
           }
@@ -70,8 +70,8 @@ export const LayeredScrollContent: React.FC<LayeredScrollProps> = ({
             duration: 1,
             scrollTrigger: {
               trigger: contentRef.current,
-              start: 'top 90%',
-              end: 'top 50%',
+              start: 'top 80%',
+              end: 'top 40%',
               scrub: 1,
             },
           }

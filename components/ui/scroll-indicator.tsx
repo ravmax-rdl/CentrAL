@@ -31,7 +31,7 @@ export const ScrollIndicator: React.FC = () => {
           scrollTrigger: {
             trigger: document.body,
             start: 'top top',
-            end: '200px top',
+            end: '150px top',
             scrub: 1,
           },
         });
@@ -48,7 +48,7 @@ export const ScrollIndicator: React.FC = () => {
   return (
     <div
       ref={indicatorRef}
-      className="fixed bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer"
+      className="fixed bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer z-30"
       onClick={scrollToContentHandler}
     >
       <div className="flex flex-col items-center space-y-2 text-white/70 hover:text-white transition-colors duration-300">
