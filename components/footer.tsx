@@ -219,7 +219,7 @@ export default function Footer() {
             <div className="space-y-4">
               <div className="flex gap-3">
                 <a
-                  href="#"
+                  href="https://github.com/ravmax-rdl"
                   className="footer-link group w-10 h-10 bg-muted hover:bg-primary rounded-lg flex items-center justify-center transition-colors duration-300"
                   aria-label="GitHub"
                 >
@@ -229,7 +229,7 @@ export default function Footer() {
                   />
                 </a>
                 <a
-                  href="#"
+                  href="www.linkedin.com/in/ravmax-rdl"
                   className="footer-link group w-10 h-10 bg-muted hover:bg-primary rounded-lg flex items-center justify-center transition-colors duration-300"
                   aria-label="LinkedIn"
                 >
