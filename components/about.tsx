@@ -150,7 +150,7 @@ const About: React.FC = () => {
                   high-quality{' '}
                 </motion.span>
                 <TextRotate
-                  texts={['notes', 'past papers', 'revision tools']}
+                  texts={['study notes', 'past papers', 'revision tools']}
                   mainClassName="text-white px-1.5 sm:px-2 md:px-3 bg-[#43afbe] overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg inline-block whitespace-nowrap"
                   staggerFrom={'last'}
                   initial={{ y: '100%' }}

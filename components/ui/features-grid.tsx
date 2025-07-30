@@ -399,7 +399,7 @@ export function FeaturesGrid() {
                   <div className="relative flex h-full flex-col justify-center space-y-6 py-6">
                     <div className="relative flex w-[calc(50%+0.875rem)] items-center justify-end gap-2">
                       <span className="block h-fit rounded border px-2 py-1 text-xs shadow-sm">
-                        Likeur
+                        Ravindu
                       </span>
                       <div className="ring-background size-7 ring-4">
                         <Image
@@ -422,12 +422,12 @@ export function FeaturesGrid() {
                         />
                       </div>
                       <span className="block h-fit rounded border px-2 py-1 text-xs shadow-sm">
-                        M. Irung
+                        Ravindu
                       </span>
                     </div>
                     <div className="relative flex w-[calc(50%+0.875rem)] items-center justify-end gap-2">
                       <span className="block h-fit rounded border px-2 py-1 text-xs shadow-sm">
-                        B. Ng
+                        Ravindu
                       </span>
                       <div className="ring-background size-7 ring-4">
                         <Image
