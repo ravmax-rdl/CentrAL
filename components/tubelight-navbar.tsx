@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -43,11 +43,36 @@ const iconMap: Record<string, LucideIcon> = {
 export function NavBar({ items, className }: NavBarProps) {
   const [activeTab, setActiveTab] = useState(items[0].name);
   const [mounted, setMounted] = useState(false);
+  const [containerWidth, setContainerWidth] = useState(0);
   const { resolvedTheme } = useTheme();
+  const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
+
+    // Initialize container width immediately
+    setContainerWidth(window.innerWidth);
   }, []);
+
+  // Container query implementation using ResizeObserver
+  useEffect(() => {
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        setContainerWidth(entry.contentRect.width);
+      }
+    });
+
+    resizeObserver.observe(document.documentElement);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []);
+
+  // Determine position based on container width (equivalent to container queries)
+  // Mobile: < 640px = bottom, Desktop: >= 640px = top
+  const isMobileSize = containerWidth < 640;
+  const navPosition = isMobileSize ? 'bottom-4' : 'top-6';
 
   // Add scroll listener to update active tab based on scroll position
   useEffect(() => {
@@ -160,7 +185,7 @@ export function NavBar({ items, className }: NavBarProps) {
   return (
     <>
       {/* Logo Section */}
-      <div className="fixed top-6 left-6 z-50">
+      <div className="fixed top-6 left-6 z-40">
         <div className="flex items-center justify-center bg-background/5 border border-gray-800 backdrop-blur-lg p-3 rounded-full shadow-lg">
           {mounted ? (
             <Image
@@ -176,11 +201,14 @@ export function NavBar({ items, className }: NavBarProps) {
         </div>
       </div>
 
-      {/* Navigation Bar */}
+      {/* Navigation Bar with Container Query Support */}
       <div
+        ref={navRef}
         className={cn(
-          'fixed bottom-4 sm:top-6 left-1/2 -translate-x-1/2 z-50',
+          'fixed left-1/2 -translate-x-1/2 z-40',
           'w-fit max-w-[calc(100vw-2rem)]', // Responsive width with padding
+          // Dynamic positioning based on container width (container query equivalent)
+          navPosition,
           className
         )}
       >
