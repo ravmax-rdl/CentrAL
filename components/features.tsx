@@ -25,8 +25,8 @@ const Features: React.FC = () => {
             stagger: 0.1,
             scrollTrigger: {
               trigger: featuresRef.current,
-              start: 'top 80%',
-              end: 'bottom 20%',
+              start: 'top 75%',
+              end: 'bottom 25%',
               toggleActions: 'play none none reverse',
             },
           }
@@ -41,7 +41,7 @@ const Features: React.FC = () => {
             duration: 1,
             scrollTrigger: {
               trigger: featuresRef.current,
-              start: 'top 80%',
+              start: 'top 75%',
               toggleActions: 'play none none reverse',
             },
           }
@@ -53,7 +53,11 @@ const Features: React.FC = () => {
   }, []);
 
   return (
-    <section id="features" ref={featuresRef} className="w-full max-w-full mx-auto px-10 md:px-60 py-10">
+    <section
+      id="features"
+      ref={featuresRef}
+      className="w-full max-w-full mx-auto px-10 md:px-60 py-10"
+    >
       <div className="mb-16">
         <div className="feature-header">
           <h2 className="text-7xl md:text-9xl font-serif my-6 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent text-left">

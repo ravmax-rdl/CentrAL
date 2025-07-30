@@ -27,8 +27,8 @@ const Contributors: React.FC = () => {
             stagger: 0.1,
             scrollTrigger: {
               trigger: contributorsRef.current,
-              start: 'top 80%',
-              end: 'bottom 20%',
+              start: 'top 75%',
+              end: 'bottom 25%',
               toggleActions: 'play none none reverse',
             },
           }
@@ -43,7 +43,7 @@ const Contributors: React.FC = () => {
             duration: 1,
             scrollTrigger: {
               trigger: contributorsRef.current,
-              start: 'top 80%',
+              start: 'top 75%',
               toggleActions: 'play none none reverse',
             },
           }

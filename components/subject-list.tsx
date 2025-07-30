@@ -27,8 +27,8 @@ const SubjectList: React.FC = () => {
             ease: 'power3.out',
             scrollTrigger: {
               trigger: listRef.current,
-              start: 'top 85%',
-              end: 'bottom 20%',
+              start: 'top 75%',
+              end: 'bottom 25%',
               toggleActions: 'play none none reverse',
             },
           }
@@ -46,7 +46,7 @@ const SubjectList: React.FC = () => {
             ease: 'power3.out',
             scrollTrigger: {
               trigger: listRef.current,
-              start: 'top 80%',
+              start: 'top 75%',
               toggleActions: 'play none none reverse',
             },
           }

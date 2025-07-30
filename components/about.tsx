@@ -47,8 +47,8 @@ const About: React.FC = () => {
             ease: 'power2.out',
             scrollTrigger: {
               trigger: aboutRef.current,
-              start: 'top 90%',
-              end: 'top 60%',
+              start: 'top 75%',
+              end: 'top 50%',
               scrub: 1,
               toggleActions: 'play none none reverse',
             },

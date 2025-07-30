@@ -31,7 +31,7 @@ export const ScrollIndicator: React.FC = () => {
           scrollTrigger: {
             trigger: document.body,
             start: 'top top',
-            end: '200px top',
+            end: '150px top',
             scrub: 1,
           },
         });

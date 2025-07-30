@@ -25,7 +25,7 @@ export default function Footer() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: footerRef.current,
-          start: 'top bottom-=100',
+          start: 'top bottom-=50',
           toggleActions: 'play none none reverse',
         },
       });

@@ -313,7 +313,7 @@ export const Hero: React.FC = () => {
             trigger: heroRef.current,
             start: 'top top',
             end: 'bottom top',
-            scrub: 1.5,
+            scrub: 1.2,
           },
         });
 
@@ -323,8 +323,8 @@ export const Hero: React.FC = () => {
           scrollTrigger: {
             trigger: heroRef.current,
             start: 'top top',
-            end: '100vh top',
-            scrub: 2,
+            end: '80vh top',
+            scrub: 1.8,
           },
         });
       }, heroRef);

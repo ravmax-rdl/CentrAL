@@ -72,7 +72,7 @@ export function FeaturesGrid() {
                 ease: 'power2.inOut',
                 scrollTrigger: {
                   trigger: svg.closest('.card-container'),
-                  start: 'top 75%',
+                  start: 'top 70%',
                   toggleActions: 'play none none reverse',
                 },
               }
@@ -97,7 +97,7 @@ export function FeaturesGrid() {
               ease: 'back.out(1.7)',
               scrollTrigger: {
                 trigger: svg.closest('.card-container'),
-                start: 'top 75%',
+                start: 'top 70%',
                 toggleActions: 'play none none reverse',
               },
             }
@@ -119,7 +119,7 @@ export function FeaturesGrid() {
               ease: 'power2.out',
               scrollTrigger: {
                 trigger: svg.closest('.card-container'),
-                start: 'top 75%',
+                start: 'top 70%',
                 toggleActions: 'play none none reverse',
               },
             }
