@@ -260,8 +260,6 @@ export default function Footer() {
               © 2025 <span className="font-semibold text-foreground">centrAL</span>. All rights
               reserved.
             </div>
-            <div className="hidden md:block w-px h-4 bg-border/60"></div>
-            <div className="text-sm text-muted-foreground">Built with ❤️ for students</div>
           </div>
 
           <div className="flex items-center gap-6 text-sm">
