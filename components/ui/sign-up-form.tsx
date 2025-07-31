@@ -200,7 +200,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
         email: data.email,
         password: data.password,
         options: {
-          emailRedirectTo: `https://studyatcentral.com/auth/verified`,
+          emailRedirectTo: `https://www.studyatcentral.com/auth/verified`,
         },
       });
 
