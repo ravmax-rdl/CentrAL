@@ -180,15 +180,33 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
     setIsLoading(true);
     setError(null);
     try {
-      const { error } = await supabase.auth.signUp({
+      const { data: signUpData, error } = await supabase.auth.signUp({
         email: data.email,
         password: data.password,
         options: {
           emailRedirectTo: `https://studyatcentral.com/auth/verified`,
         },
       });
+
       if (error) throw error;
-      router.push('/auth/sign-up-success');
+
+      // Check the response to determine if this is a new user or existing user
+      if (
+        signUpData.user &&
+        signUpData.user.identities &&
+        signUpData.user.identities.length === 0
+      ) {
+        // User already exists - identities array will be empty for existing users
+        setError(
+          'An account with this email already exists. Please sign in instead or use a different email.'
+        );
+      } else if (signUpData.user) {
+        // New user successfully created or user needs to confirm email
+        router.push('/auth/sign-up-success');
+      } else {
+        // Unexpected response
+        setError('Something went wrong. Please try again.');
+      }
     } catch (error: unknown) {
       if (error instanceof Error) {
         // Handle specific Supabase auth errors
