@@ -12,8 +12,14 @@ export async function GET(request: NextRequest) {
 
   // Handle new PKCE flow with code parameter
   if (code) {
-    // Redirect to the verified page which will handle the code exchange
-    redirect(`/auth/verified?code=${code}`);
+    // Check if this is a password reset by looking at the 'next' parameter
+    // Password reset emails should have redirectTo set to /auth/update-password
+    if (next === '/auth/update-password' || next.includes('/auth/update-password')) {
+      redirect(`/auth/update-password?code=${code}`);
+    } else {
+      // Redirect to the verified page which will handle the code exchange for email verification
+      redirect(`/auth/verified?code=${code}`);
+    }
   }
 
   // Handle legacy flow with token_hash and type

@@ -41,7 +41,7 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
     setError(null);
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(data.email, {
-        redirectTo: `https://studyatcentral.com/auth/update-password`,
+        redirectTo: `${window.location.origin}/auth/update-password`,
       });
       if (error) throw error;
       setSuccess(true);
