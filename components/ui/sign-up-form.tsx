@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -161,6 +161,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
     register,
     handleSubmit,
     watch,
+    trigger,
     formState: { errors, touchedFields },
   } = useForm<SignUpSchema>({
     resolver: zodResolver(signUpSchema),
@@ -171,9 +172,24 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
   // Watch both email and password fields for real-time validation
   const watchedEmail = watch('email', '');
   const watchedPassword = watch('password', '');
+  const watchedRepeatPassword = watch('repeatPassword', '');
   const emailValidations = validateEmailFormat(watchedEmail);
   const passwordRequirements = validatePasswordStrength(watchedPassword);
   const passwordStrength = getPasswordStrength(watchedPassword);
+
+  // Re-trigger validation for repeatPassword when password changes
+  useEffect(() => {
+    if (touchedFields.repeatPassword && watchedPassword) {
+      trigger('repeatPassword');
+    }
+  }, [watchedPassword, touchedFields.repeatPassword, trigger]);
+
+  // Re-trigger validation for password when repeatPassword changes
+  useEffect(() => {
+    if (touchedFields.password && watchedRepeatPassword) {
+      trigger('repeatPassword');
+    }
+  }, [watchedRepeatPassword, touchedFields.password, trigger]);
 
   const handleSignUp = async (data: SignUpSchema) => {
     const supabase = createClient();
