@@ -68,7 +68,7 @@ export default async function ProtectedPage() {
               <Button variant="outline" size="sm" asChild>
                 <Link href="/auth/forgot-password" className="flex items-center gap-2">
                   <Key size={16} />
-                  Reset Password
+                  Reset Password (Broken Redirect)
                 </Link>
               </Button>
             </div>
