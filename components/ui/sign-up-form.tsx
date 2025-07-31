@@ -238,7 +238,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
             'An account with this email already exists. Please sign in instead or use a different email.'
           );
         } else if (errorMessage.includes('password')) {
-          setError('Password must be at least 6 characters long.');
+          setError('Password must be at least 8 characters long.');
         } else if (errorMessage.includes('email')) {
           setError('Please enter a valid email address.');
         } else if (errorMessage.includes('rate limit')) {
