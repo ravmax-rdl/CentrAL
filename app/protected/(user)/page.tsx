@@ -1,7 +1,8 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
-import { User, ArrowLeft } from 'lucide-react';
+import { User, ArrowLeft, Key } from 'lucide-react';
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 import ProfileEditor from '../../../components/ui/profile-editor';
 
 export default async function ProtectedPage() {
@@ -24,7 +25,7 @@ export default async function ProtectedPage() {
           Home
         </Link>
       </div>
-      
+
       {/* Profile Section */}
       <section id="profile" className="w-full">
         <div className="flex items-center gap-3 mb-6">
@@ -54,6 +55,22 @@ export default async function ProtectedPage() {
                   ? new Date(data.user.last_sign_in_at).toLocaleDateString()
                   : 'N/A'}
               </span>
+            </div>
+          </div>
+
+          {/* Password Reset Section */}
+          <div className="mt-6 pt-6 border-t">
+            <div className="flex items-center justify-between">
+              <div>
+                <h4 className="font-medium text-sm">Password</h4>
+                <p className="text-xs text-muted-foreground">Update your account password</p>
+              </div>
+              <Button variant="outline" size="sm" asChild>
+                <Link href="/auth/forgot-password" className="flex items-center gap-2">
+                  <Key size={16} />
+                  Reset Password
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
