@@ -1,6 +1,6 @@
 'use client';
 
-import { cn } from '@/lib/utils';
+import { cn, getRedirectURL } from '@/lib/utils';
 import { createClient } from '@/lib/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -200,7 +200,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
         email: data.email,
         password: data.password,
         options: {
-          emailRedirectTo: `${window.location.origin}/auth/verified`,
+          emailRedirectTo: getRedirectURL('auth/verified'),
         },
       });
 
