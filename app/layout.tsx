@@ -7,7 +7,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
-  : 'http://localhost:3000';
+  : 'https://studyatcentral.com';
 
 // Detect if this is a preview deployment
 const isPreview = process.env.VERCEL_ENV === 'preview';

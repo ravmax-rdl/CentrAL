@@ -4,7 +4,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test-redirects": "npx tsx scripts/test-redirects.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
