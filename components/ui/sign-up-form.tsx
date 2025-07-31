@@ -163,7 +163,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
         email: data.email,
         password: data.password,
         options: {
-          emailRedirectTo: `${window.location.origin}/auth/verified`,
+          emailRedirectTo: `https://studyatcentral.com/auth/verified`,
         },
       });
       if (error) throw error;
