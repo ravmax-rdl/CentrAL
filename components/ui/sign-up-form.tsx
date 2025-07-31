@@ -12,33 +12,45 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Check, X } from 'lucide-react';
+import { X } from 'lucide-react';
 
 // Email validation function
 const validateEmailFormat = (email: string) => {
   const validations = [
     { test: /.+@.+\..+/, text: 'Valid email format', type: 'format' },
-    { test: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, text: 'No spaces or special characters', type: 'characters' },
+    {
+      test: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      text: 'No spaces or special characters',
+      type: 'characters',
+    },
     { test: /^[^.][^@]*@[^@]*[^.]$/, text: 'No leading/trailing dots', type: 'dots' },
     { test: /^[^@]{1,64}@[^@]{1,255}$/, text: 'Appropriate length', type: 'length' },
   ];
 
-  return validations.map(validation => ({
+  return validations.map((validation) => ({
     ...validation,
-    met: validation.test.test(email)
+    met: validation.test.test(email),
   }));
 };
 
 // Enhanced email validation
 const isValidEmailDomain = (email: string): boolean => {
   const commonDomains = [
-    'gmail.com', 'yahoo.com', 'outlook.com', 'hotmail.com', 'icloud.com',
-    'protonmail.com', 'aol.com', 'mail.com', 'zoho.com', 'yandex.com'
+    'gmail.com',
+    'yahoo.com',
+    'outlook.com',
+    'hotmail.com',
+    'icloud.com',
+    'protonmail.com',
+    'aol.com',
+    'mail.com',
+    'zoho.com',
+    'yandex.com',
   ];
-  
+
   const domain = email.split('@')[1]?.toLowerCase();
   if (!domain) return false;
-  
+
   // Check if it's a common domain or has proper TLD structure
   return commonDomains.includes(domain) || /^[a-z0-9.-]+\.[a-z]{2,}$/.test(domain);
 };
@@ -47,7 +59,7 @@ const isValidEmailDomain = (email: string): boolean => {
 const getSuggestedEmail = (email: string): string => {
   const [localPart, domain] = email.split('@');
   if (!domain) return email;
-  
+
   const suggestions: { [key: string]: string } = {
     'gmial.com': 'gmail.com',
     'gmai.com': 'gmail.com',
@@ -59,7 +71,7 @@ const getSuggestedEmail = (email: string): string => {
     'outlok.com': 'outlook.com',
     'outloook.com': 'outlook.com',
   };
-  
+
   const suggested = suggestions[domain.toLowerCase()];
   return suggested ? `${localPart}@${suggested}` : email;
 };
@@ -101,21 +113,30 @@ const signUpSchema = z
       .string({ required_error: 'Email is required' })
       .min(1, { message: 'Email is required' })
       .email({ message: 'Please enter a valid email address' })
-      .refine((email) => {
-        // Check for proper email structure
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-      }, { message: 'Email format is invalid' })
-      .refine((email) => {
-        // Check domain validity
-        return isValidEmailDomain(email);
-      }, { message: 'Please use a valid email domain' })
-      .refine((email) => {
-        // Check for common typos
-        const commonTypos = ['gmial.com', 'gmai.com', 'yahooo.com', 'hotmial.com'];
-        const domain = email.split('@')[1]?.toLowerCase();
-        return !commonTypos.includes(domain);
-      }, { message: 'Please check your email domain for typos' }),
+      .refine(
+        (email) => {
+          // Check for proper email structure
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return emailRegex.test(email);
+        },
+        { message: 'Email format is invalid' }
+      )
+      .refine(
+        (email) => {
+          // Check domain validity
+          return isValidEmailDomain(email);
+        },
+        { message: 'Please use a valid email domain' }
+      )
+      .refine(
+        (email) => {
+          // Check for common typos
+          const commonTypos = ['gmial.com', 'gmai.com', 'yahooo.com', 'hotmial.com'];
+          const domain = email.split('@')[1]?.toLowerCase();
+          return !commonTypos.includes(domain);
+        },
+        { message: 'Please check your email domain for typos' }
+      ),
     password: z
       .string({ required_error: 'Password is required' })
       .min(8, { message: 'Password must be at least 8 characters' })
@@ -221,34 +242,28 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
                   className={cn(
                     errors.email && touchedFields.email
                       ? 'border-red-500 focus-visible:ring-red-500'
-                      : watchedEmail && emailValidations.every(v => v.met)
-                      ? 'border-green-500 focus-visible:ring-green-500'
-                      : ''
+                      : watchedEmail && emailValidations.every((v) => v.met)
+                        ? 'border-green-500 focus-visible:ring-green-500'
+                        : ''
                   )}
                   disabled={isLoading}
                 />
-                
-                {/* Email Validation Feedback */}
-                {watchedEmail && touchedFields.email && (
+
+                {/* Email Validation Feedback - Only show when there are unmet conditions */}
+                {watchedEmail && touchedFields.email && emailValidations.some((v) => !v.met) && (
                   <div className="space-y-2">
-                    {/* Email validation checklist */}
+                    {/* Email validation checklist - Only show unmet conditions */}
                     <div className="grid grid-cols-1 gap-1">
-                      {emailValidations.map((validation, index) => (
-                        <div key={index} className="flex items-center gap-2 text-xs">
-                          {validation.met ? (
-                            <Check className="h-3 w-3 text-green-500" />
-                          ) : (
+                      {emailValidations
+                        .filter((validation) => !validation.met)
+                        .map((validation, index) => (
+                          <div key={index} className="flex items-center gap-2 text-xs">
                             <X className="h-3 w-3 text-gray-400" />
-                          )}
-                          <span className={cn(
-                            validation.met ? 'text-green-600' : 'text-gray-500'
-                          )}>
-                            {validation.text}
-                          </span>
-                        </div>
-                      ))}
+                            <span className="text-gray-500">{validation.text}</span>
+                          </div>
+                        ))}
                     </div>
-                    
+
                     {/* Domain suggestion for common typos */}
                     {watchedEmail.includes('@') && !isValidEmailDomain(watchedEmail) && (
                       <div className="text-xs text-amber-600 bg-amber-50 dark:bg-amber-950 p-2 rounded">
@@ -257,7 +272,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
                     )}
                   </div>
                 )}
-                
+
                 {errors.email && touchedFields.email && (
                   <p id="signup-email-error" className="text-sm text-red-500" role="alert">
                     {errors.email.message}
@@ -282,8 +297,8 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
                   disabled={isLoading}
                 />
 
-                {/* Password Strength Indicator */}
-                {watchedPassword && (
+                {/* Password Strength Indicator - Only show when there are unmet requirements */}
+                {watchedPassword && passwordRequirements.some((req) => !req.met) && (
                   <div className="space-y-2">
                     <div className="flex items-center gap-2">
                       <div className="flex-1 bg-gray-200 rounded-full h-2">
@@ -300,20 +315,16 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
                       </span>
                     </div>
 
-                    {/* Password Requirements Checklist */}
+                    {/* Password Requirements Checklist - Only show unmet requirements */}
                     <div className="grid grid-cols-1 gap-1">
-                      {passwordRequirements.map((req, index) => (
-                        <div key={index} className="flex items-center gap-2 text-xs">
-                          {req.met ? (
-                            <Check className="h-3 w-3 text-green-500" />
-                          ) : (
+                      {passwordRequirements
+                        .filter((req) => !req.met)
+                        .map((req, index) => (
+                          <div key={index} className="flex items-center gap-2 text-xs">
                             <X className="h-3 w-3 text-gray-400" />
-                          )}
-                          <span className={cn(req.met ? 'text-green-600' : 'text-gray-500')}>
-                            {req.text}
-                          </span>
-                        </div>
-                      ))}
+                            <span className="text-gray-500">{req.text}</span>
+                          </div>
+                        ))}
                     </div>
                   </div>
                 )}
