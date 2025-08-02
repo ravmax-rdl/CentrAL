@@ -5,11 +5,6 @@
 <h1 align="center">centrAL</h1>
 
 <p align="center">
-  <strong>Where ambition meets access.</strong>
-</p>
-
-
-<p align="center">
   <img src="https://img.shields.io/badge/Status-Work%20in%20Progress-yellow?style=for-the-badge" alt="Status">
 </p>
 
