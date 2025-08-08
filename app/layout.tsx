@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     siteName: 'centrAL',
     images: [
       {
-        url: '/images/banner.jpg',
+        url: '/images/banner.png',
         width: 1200,
         height: 630,
         alt: 'centrAL - Where ambition meets access',
