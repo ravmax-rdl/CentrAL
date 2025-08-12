@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     'online learning',
     'peer learning',
   ],
-  authors: [{ name: 'centrAL Team' }],
+  authors: [{ name: 'centrAL Team', url: 'https://studyatcentral.com' }],
   creator: 'centrAL',
   publisher: 'centrAL',
   category: 'education',
@@ -58,11 +58,11 @@ export const metadata: Metadata = {
     siteName: 'centrAL',
     images: [
       {
-        url: `/images/banner.png`,
+        url: `/images/banner.webp`,
         width: 1200,
         height: 630,
         alt: 'centrAL - Where ambition meets access. A collaborative learning platform for Sri Lankan A/L students.',
-        type: 'image/png',
+        type: 'image/webp',
       },
     ],
     locale: 'en_US',
@@ -73,7 +73,9 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: isPreview ? 'centrAL (Preview)' : 'centrAL',
     description: 'A collaborative learning platform for Sri Lankan G.C.E A/L students.',
-    images: ['/images/banner.png'],
+    images: ['/images/banner.webp'],
+    creator: '@centrAL_lk',
+    site: '@centrAL_lk',
   },
   robots: {
     index: !isPreview,
@@ -119,6 +121,10 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#000000' },
+  ],
 };
 
 // Optimized font loading with preload and display swap
@@ -151,10 +157,6 @@ export default function RootLayout({
         {/* Preconnect to external domains for better performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link rel="preconnect" href="https://vitals.vercel-insights.com" />
-
-        {/* DNS prefetch for better performance */}
-        <link rel="dns-prefetch" href="https://vitals.vercel-analytics.com" />
 
         {/* Favicon and app icons */}
         <link rel="icon" href="/favicon.ico" sizes="32x32" />
