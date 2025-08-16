@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/images/banner.webp" alt="centrAL" width="100%"/>
+  <img src="public/banner.webp" alt="centrAL" width="100%"/>
 </p>
 
 <h1 align="center">centrAL</h1>
